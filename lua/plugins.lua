@@ -53,7 +53,36 @@ return packer.startup(function()
   use "nvim-lualine/lualine.nvim"
   use "akinsho/toggleterm.nvim"
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
-   
+  
+  -- statusline
+  use {
+    'feline-nvim/feline.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons' },
+  }
+
+  -- indent line
+  use 'lukas-reineke/indent-blankline.nvim'
+
+ -- autopair
+  use {
+    'windwp/nvim-autopairs',
+    config = function()
+      require('nvim-autopairs').setup()
+    end
+  }
+
+  -- autocomplete
+  use {
+    'hrsh7th/nvim-cmp',
+    requires = {
+      'L3MON4D3/LuaSnip',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-buffer',
+      'saadparwaiz1/cmp_luasnip',
+    },
+  }
+
   --Nvim Tree
   use {'kyazdani42/nvim-tree.lua', config = "require('plugins.tree')"}
 
