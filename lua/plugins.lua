@@ -41,19 +41,24 @@ packer.init {
 return packer.startup(function()
   -- Packer can manage it self
   use 'wbthomason/packer.nvim'
-  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+  use 'lewis6991/impatient.nvim'
+  use {'glepnir/dashboard-nvim', config = "require('plugins.dashboard')"}
+  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = "require('plugins.treesitter')"}
   use 'neovim/nvim-lspconfig' 
-  use 'williamboman/nvim-lsp-installer'
+  use {'williamboman/nvim-lsp-installer', config = "require('lsp.config')"}
   use {'romgrk/barbar.nvim', config = "require('plugins.barbar')"}
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
-  use "numToStr/Comment.nvim" -- Easily comment stuff
+  use {"numToStr/Comment.nvim", config = "require('plugins.comment')"} -- Easily comment stuff
+  use {'akinsho/nvim-toggleterm.lua', config = "require('plugins.toggleterm')"}
   use "kyazdani42/nvim-web-devicons"
   use "akinsho/bufferline.nvim"
   use "nvim-lualine/lualine.nvim"
   use "akinsho/toggleterm.nvim"
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
-  
+  use {'JoosepAlviste/nvim-ts-context-commentstring', after = 'nvim-treesitter'} 
+  use {'folke/which-key.nvim', config = "require('plugins.which-key')", event = "BufWinEnter"}
+
   -- statusline
   use {
     'feline-nvim/feline.nvim',
@@ -61,7 +66,7 @@ return packer.startup(function()
   }
 
   -- indent line
-  use 'lukas-reineke/indent-blankline.nvim'
+  use {'lukas-reineke/indent-blankline.nvim', config = "require('plugins.indent')"}
 
  -- autopair
   use {
@@ -71,17 +76,18 @@ return packer.startup(function()
     end
   }
 
+  --LSP
+  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+
   -- autocomplete
-  use {
-    'hrsh7th/nvim-cmp',
-    requires = {
-      'L3MON4D3/LuaSnip',
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-buffer',
-      'saadparwaiz1/cmp_luasnip',
-    },
-  }
+  use 'hrsh7th/nvim-cmp'
+  use {'onsails/lspkind-nvim'}
+  use 'L3MON4D3/LuaSnip'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-buffer'
+  use 'saadparwaiz1/cmp_luasnip'
+  use "rafamadriz/friendly-snippets"
 
   --Nvim Tree
   use {'kyazdani42/nvim-tree.lua', config = "require('plugins.tree')"}
@@ -101,6 +107,7 @@ return packer.startup(function()
   -- Themes
   use {'bluz71/vim-nightfly-guicolors'}
   use {'folke/tokyonight.nvim'}
+  use 'EdenEast/nightfox.nvim'
 
   -- Git
   use {'lewis6991/gitsigns.nvim',

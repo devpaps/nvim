@@ -1,5 +1,35 @@
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
+local lspkind = require('lspkind')
+
+
+local kind_icons = {
+  Text = "",
+  Method = "",
+  Function = "",
+  Constructor = "",
+  Field = "",
+  Variable = "",
+  Class = "ﴯ",
+  Interface = "",
+  Module = "",
+  Property = "ﰠ",
+  Unit = "",
+  Value = "",
+  Enum = "",
+  Keyword = "",
+  Snippet = "",
+  Color = "",
+  File = "",
+  Reference = "",
+  Folder = "",
+  EnumMember = "",
+  Constant = "",
+  Struct = "",
+  Event = "",
+  Operator = "",
+  TypeParameter = ""
+}
 
 cmp.setup {
   -- load snippet support
@@ -8,7 +38,6 @@ cmp.setup {
       luasnip.lsp_expand(args.body)
     end,
   },
-
 -- completion settings
   completion = {
     --completeopt = 'menu,menuone,noselect'
@@ -49,6 +78,34 @@ cmp.setup {
     end
   },
 
+
+
+formatting = {
+    format = function(entry, vim_item)
+      -- Kind icons
+      vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+      -- Source
+      vim_item.menu = ({
+        buffer = "[Buffer]",
+        nvim_lsp = "[LSP]",
+        luasnip = "[LuaSnip]",
+        nvim_lua = "[Lua]",
+        latex_symbols = "[LaTeX]",
+      })[entry.source.name]
+      return vim_item
+    end
+  },
+
+   experimental = {
+    -- I like the new menu better! Nice work hrsh7th
+    native_menu = false,
+
+    -- Let's play with this for a day or two
+    ghost_text = true,
+  },
+
+
+
   -- load sources, see: https://github.com/topics/nvim-cmp
   sources = {
     { name = 'nvim_lsp' },
@@ -57,3 +114,5 @@ cmp.setup {
     { name = 'buffer' },
   },
 }
+
+require("luasnip.loaders.from_vscode").lazy_load()

@@ -3,8 +3,11 @@ local keymap = vim.api.nvim_set_keymap
 
 -- Remap space as leader key
 keymap("", "<Space>", "<NOP>", opts)
-vim.g.leader = " "
+vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+
+-- Format
+keymap("n", "<C-f>", "<CMD>lua vim.lsp.buf.formatting_sync()<CR>", {noremap = true})
 
 -- Better window movment
 keymap("n", "<C-h>", "<C-w>h", opts)
