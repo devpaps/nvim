@@ -38,7 +38,7 @@ packer.init {
   },
 }
 
-return packer.startup(function()
+return packer.startup(function(use)
   -- Packer can manage it self
   use 'wbthomason/packer.nvim'
   use 'lewis6991/impatient.nvim'

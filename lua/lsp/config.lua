@@ -2,6 +2,7 @@ local lsp_installer = require('nvim-lsp-installer')
 
 lsp_installer.on_server_ready(function(server)
 
+
    local capabilities = vim.lsp.protocol.make_client_capabilities()
     local status_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
     if status_ok then
@@ -13,6 +14,11 @@ lsp_installer.on_server_ready(function(server)
         capabilities = capabilities,
         handlers = handlers,
     }
+
+    if server.name == "sumneko_lua" then
+      opts.settings = require('lsp.servers.lua').settings
+    end
+
       server:setup(opts)
 end)
 
