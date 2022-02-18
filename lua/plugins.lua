@@ -44,7 +44,7 @@ return packer.startup(function()
   use 'lewis6991/impatient.nvim'
   use {'glepnir/dashboard-nvim', config = "require('plugins.dashboard')"}
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = "require('plugins.treesitter')"}
-  use 'neovim/nvim-lspconfig' 
+  use 'neovim/nvim-lspconfig'
   use {'williamboman/nvim-lsp-installer', config = "require('lsp.config')"}
   use {'romgrk/barbar.nvim', config = "require('plugins.barbar')"}
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
@@ -56,8 +56,10 @@ return packer.startup(function()
   use "nvim-lualine/lualine.nvim"
   use "akinsho/toggleterm.nvim"
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
-  use {'JoosepAlviste/nvim-ts-context-commentstring', after = 'nvim-treesitter'} 
+  use {'JoosepAlviste/nvim-ts-context-commentstring', after = 'nvim-treesitter'}
   use {'folke/which-key.nvim', config = "require('plugins.which-key')", event = "BufWinEnter"}
+  use {'folke/trouble.nvim', config = "require('plugins.trouble')"}
+  use {"ellisonleao/glow.nvim"}
 
   -- statusline
   use {
@@ -77,7 +79,7 @@ return packer.startup(function()
   }
 
   --LSP
-  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+  use {"jose-elias-alvarez/null-ls.nvim", config = "require('lsp.null-ls')"} -- for formatters and linters
 
   -- autocomplete
   use 'hrsh7th/nvim-cmp'
@@ -103,7 +105,7 @@ return packer.startup(function()
     }
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use {'cljoly/telescope-repo.nvim'}
-  
+
   -- Themes
   use {'bluz71/vim-nightfly-guicolors'}
   use {'folke/tokyonight.nvim'}
