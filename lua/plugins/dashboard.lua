@@ -9,7 +9,8 @@ vim.g.dashboard_custom_header = {
 "                                       o888                   o888                    "
 }
 
-vim.g.dashboard_session_directory = '~/.config/nvim/sessions'
+local plugins_count = vim.fn.len(vim.fn.globpath("~/.local/share/nvim/site/pack/packer/start", "*", 0, 1))
+vim.g.dashboard_session_directory = 'sessions'
 vim.g.dashboard_default_executive = 'telescope'
 vim.g.dashboard_custom_section = {
   a = {description = {icons.fileNoBg ..            'Find File          '}, command = 'Telescope find_files hidden=true'},
@@ -21,3 +22,4 @@ vim.g.dashboard_custom_section = {
   g = {description = {icons.settings ..            'Settings           '}, command = 'edit $MYVIMRC'},
   h = {description = {icons.warningTriangle ..     'Exit               '}, command = 'exit'},
 }
+vim.g.dashboard_custom_footer = {icons.container .. plugins_count .. " plugins loaded" }

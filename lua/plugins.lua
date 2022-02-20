@@ -60,6 +60,7 @@ return packer.startup(function(use)
   use {'folke/which-key.nvim', config = "require('plugins.which-key')", event = "BufWinEnter"}
   use {'folke/trouble.nvim', config = "require('plugins.trouble')"}
   use {"ellisonleao/glow.nvim"}
+  use 'ggandor/lightspeed.nvim'
 
   -- statusline
   use {
