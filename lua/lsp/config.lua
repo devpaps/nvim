@@ -1,36 +1,34 @@
-local lsp_installer = require('nvim-lsp-installer')
+-- Diagnostic config
 
-lsp_installer.on_server_ready(function(server)
+vim.diagnostic.config({
+  float = {
+    format = function(diagnostic)
+      if not diagnostic.source or not diagnostic.user_data.lsp.code then
+        return string.format('%s', diagnostic.message)
+      end
 
+      if diagnostic.source == 'eslint' then
+        return string.format('%s [%s]', diagnostic.message, diagnostic.user_data.lsp.code)
+      end
 
-   local capabilities = vim.lsp.protocol.make_client_capabilities()
-    local status_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
-    if status_ok then
-      capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+      return string.format('%s [%s]', diagnostic.message, diagnostic.source)
     end
+  },
+  severity_sort = true,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  virtual_text = true,
+})
 
-    local opts = {
-        on_attach = on_attach,
-        capabilities = capabilities,
-        handlers = handlers,
-    }
+-- UI
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 
-    if server.name == "sumneko_lua" then
-      opts.settings = require('lsp.servers.lua').settings
-    end
-
-      server:setup(opts)
-end)
-
--- Include the servers you want to have installed by default below
-local servers = {
-  "tsserver",
-}
-
-for _, name in pairs(servers) do
-  local server_is_found, server = lsp_installer.get_server(name)
-  if server_is_found and not server:is_installed() then
-    print("Installing " .. name)
-    server:install()
-  end
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
+
+-- for _,server_name in ipairs(M42.lsp.servers) do
+--   require('lsp.servers.' .. server_name)
+-- end

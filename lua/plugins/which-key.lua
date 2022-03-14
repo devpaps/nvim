@@ -172,11 +172,14 @@ local mappings = {
 
   p = {
     name = "Project",
-    f = { 'file' },
+    g = { 'file' },
+    f = { "<cmd>lua require'telescope.builtin'.find_files{}<CR>",    'find file' },
     w = { 'word' },
-    l = { "<cmd>lua require'telescope'.extensions.repo.cached_list{file_ignore_patterns={'/%.cache/', '/%.cargo/', '/%.local/', '/%timeshift/', '/usr/', '/srv/', '/%.oh%-my%-zsh'}}<CR>", 'list' },
+    l = { "<cmd>Telescope repo cached_list<CR>",                     'list git files' },
     t = { "<cmd>TodoTrouble<CR>",                                    'todo' },
-    s = { "<cmd>SessionSave<CR>",                                    'save session' }
+    s = { "<cmd>SessionSave<CR>",                                    'save session' },
+    h = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>",  'Harpoon File Navigation' },
+    m = { "<cmd>lua require('harpoon.mark').add_file()<CR>",         'Harpoon Mark File' },
   },
 
   s = {

@@ -21,9 +21,9 @@ require('telescope').setup {
           },
           prompt_position = "top",
         },
-        file_sorter      = require('telescope.sorters').get_fzy_sorter,
-        prompt_prefix    = ' 🔍 ',
-        color_devicons   = true,
+        file_sorter = require('telescope.sorters').get_fzy_sorter,
+        prompt_prefix = ' 🔍 ',
+        color_devicons = true,
 
         sorting_strategy = "ascending",
 
@@ -65,43 +65,43 @@ local M = {}
 
 local delta_bcommits = previewers.new_termopen_previewer {
   get_command = function(entry)
-    return { 'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value .. '^!', '--', entry.current_file }
+      return { 'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value .. '^!', '--', entry.current_file }
   end
 }
 
 local delta = previewers.new_termopen_previewer {
   get_command = function(entry)
-    return { 'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value .. '^!' }
+      return { 'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value .. '^!' }
   end
 }
 
 M.my_git_commits = function(opts)
-  opts = opts or {}
-  opts.previewer = {
+    opts = opts or {}
+    opts.previewer = {
     delta,
     previewers.git_commit_message.new(opts),
     previewers.git_commit_diff_as_was.new(opts),
-  }
+    }
 
-  builtin.git_commits(opts)
+    builtin.git_commits(opts)
 end
 
 M.my_git_bcommits = function(opts)
-  opts = opts or {}
-  opts.previewer = {
+    opts = opts or {}
+    opts.previewer = {
     delta_bcommits,
     previewers.git_commit_message.new(opts),
     previewers.git_commit_diff_as_was.new(opts),
-  }
+    }
 
-  builtin.git_bcommits(opts)
+    builtin.git_bcommits(opts)
 end
 
 M.edit_neovim = function()
-  builtin.git_files {
+    builtin.git_files {
     cwd = "~/.config/nvim",
     prompt = "~ dotfiles ~",
-    color_devicons   = true,
+    color_devicons = true,
     sorting_strategy = "ascending",
     layout_config = {
       horizontal = {
@@ -112,13 +112,13 @@ M.edit_neovim = function()
       },
       prompt_position = "top",
     },
-  }
+    }
 end
 
 M.project_files = function()
-  local opts = {} -- define here if you want to define something
-  local ok = pcall(require"telescope.builtin".git_files, opts)
-  if not ok then require"telescope.builtin".find_files(opts) end
+    local opts = {} -- define here if you want to define something
+    local ok = pcall(require "telescope.builtin".git_files, opts)
+    if not ok then require "telescope.builtin".find_files(opts) end
 end
 
 return M

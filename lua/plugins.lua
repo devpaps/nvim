@@ -42,10 +42,11 @@ return packer.startup(function(use)
   -- Packer can manage it self
   use 'wbthomason/packer.nvim'
   use 'lewis6991/impatient.nvim'
+  use "nathom/filetype.nvim" -- Faster statup
   use {'glepnir/dashboard-nvim', config = "require('plugins.dashboard')"}
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = "require('plugins.treesitter')"}
   use 'neovim/nvim-lspconfig'
-  use {'williamboman/nvim-lsp-installer', config = "require('lsp.config')"}
+  use {'williamboman/nvim-lsp-installer', event = 'BufEnter', after = 'cmp-nvim-lsp', config = "require('lsp.installer')"}
   use {'romgrk/barbar.nvim', config = "require('plugins.barbar')"}
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
@@ -61,6 +62,17 @@ return packer.startup(function(use)
   use {'folke/trouble.nvim', config = "require('plugins.trouble')"}
   use {"ellisonleao/glow.nvim"}
   use 'ggandor/lightspeed.nvim'
+  use {'sindrets/diffview.nvim'}
+  use {'github/copilot.vim'}
+
+  -- Themes
+  use {'bluz71/vim-nightfly-guicolors'}
+  use {'folke/tokyonight.nvim'}
+  use {'EdenEast/nightfox.nvim'}
+  use {'gruvbox-community/gruvbox'}
+
+  -- Harpoon
+  use {'ThePrimeagen/harpoon'}
 
   -- statusline
   use {
@@ -94,6 +106,7 @@ return packer.startup(function(use)
 
   --Nvim Tree
   use {'kyazdani42/nvim-tree.lua', config = "require('plugins.tree')"}
+  use {'airblade/vim-rooter'}
 
   -- Telescope
   use {'nvim-telescope/telescope.nvim',
@@ -107,10 +120,6 @@ return packer.startup(function(use)
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use {'cljoly/telescope-repo.nvim'}
 
-  -- Themes
-  use {'bluz71/vim-nightfly-guicolors'}
-  use {'folke/tokyonight.nvim'}
-  use 'EdenEast/nightfox.nvim'
 
   -- Git
   use {'lewis6991/gitsigns.nvim',
