@@ -10,6 +10,9 @@ vim.g.maplocalleader = " "
 vim.g.copilot_no_tab_map = true
 vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 
+-- toggle neoclip - https://github.com/AckslD/nvim-neoclip.lua#startstop
+keymap("n", ",tn", "<CMD>lua require('neoclip').toggle()<CR>", { noremap = true, silent = true })
+
 -- Harpoon
 keymap("n", "<Leader>ph", "<CMD>lua require('harpoon.ui').toggle_quick_menu()<CR>", {noremap = true})
 keymap("n", "<Leader>pm", "<CMD>lua require('harpoon.mark).add_file()<CR>", {noremap = true})

@@ -97,7 +97,6 @@ local mappings = {
 
   a = {
     name = "Actions",
-    m = { '<cmd>MarkdownPreviewToggle<CR>',              'markdown preview' },
     n = { '<cmd>set nonumber!<CR>',                      'line numbers' },
     r = { '<cmd>set norelativenumber!<CR>',              'relative number' },
     t = { '<cmd>ToggleTerm direction=float<CR>',         'terminal float' },
@@ -189,12 +188,6 @@ local mappings = {
     h = { '<cmd>Telescope oldfiles<CR>',                             'file history' },
     H = { '<cmd>Telescope command_history<CR>',                      'command history' },
     s = { '<cmd>Telescope search_history<CR>',                       'search history' },
-  },
-
-  t = {
-    name = "Table Mode",
-    m = { 'toggle' },
-    t = { 'tableize' },
   },
 }
 

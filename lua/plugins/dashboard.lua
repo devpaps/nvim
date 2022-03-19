@@ -10,7 +10,7 @@ vim.g.dashboard_custom_header = {
 }
 
 local plugins_count = vim.fn.len(vim.fn.globpath("~/.local/share/nvim/site/pack/packer/start", "*", 0, 1))
-vim.g.dashboard_session_directory = 'sessions'
+vim.g.dashboard_session_directory = '~/.config/nvim/sessions'
 vim.g.dashboard_default_executive = 'telescope'
 vim.g.dashboard_custom_section = {
   a = {description = {icons.fileNoBg ..            'Find File          '}, command = 'Telescope find_files hidden=true'},

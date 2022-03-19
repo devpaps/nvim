@@ -25,6 +25,7 @@ local options = {
   tabstop        = 2,                       --- Insert 2 spaces for a tab
   termguicolors  = true,                    --- Correct terminal colors
   timeoutlen     = 300,                     --- Faster completion
+  laststatus     = 3,                       --- Show status bar
   undofile       = true,                    --- Sets undo to file
   updatetime     = 100,                     --- Faster completion
   viminfo        = "'1000",                 --- Increase the size of file history

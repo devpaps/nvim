@@ -45,10 +45,10 @@ lsp_installer.on_server_ready(function(server)
       opts.settings = require('lsp.servers.graphql').settings
     end
 
-    -- if server.name == "html" then
-    --   opts.capabilities = require('lsp.servers.html').capabilities
-    --   opts.settings = require('lsp.servers.html').settings
-    -- end
+    if server.name == "html" then
+      opts.capabilities = require('lsp.servers.html').capabilities
+      opts.settings = require('lsp.servers.html').settings
+    end
 
     -- if server.name == "jsonls" then
     --   opts.settings = require('lsp.servers.json').settings
@@ -58,10 +58,10 @@ lsp_installer.on_server_ready(function(server)
       opts.settings = require('lsp.servers.lua').settings
     end
 
-    -- if server.name == "vuels" then
-    --   opts.filetypes = require('lsp.servers.vue2').filetypes
-    --   opts.init_options = require('lsp.servers.vue2').init_options
-    -- end
+    if server.name == "vuels" then
+      opts.filetypes = require('lsp.servers.vue2').filetypes
+      opts.init_options = require('lsp.servers.vue2').init_options
+    end
 
 
     -- (How to) Customize the options passed to the server

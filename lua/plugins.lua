@@ -38,7 +38,7 @@ packer.init {
   },
 }
 
-return packer.startup(function(use)
+return packer.startup({function(use)
   -- Packer can manage it self
   use 'wbthomason/packer.nvim'
   use 'lewis6991/impatient.nvim'
@@ -53,22 +53,19 @@ return packer.startup(function(use)
   use {"numToStr/Comment.nvim", config = "require('plugins.comment')"} -- Easily comment stuff
   use {'akinsho/nvim-toggleterm.lua', config = "require('plugins.toggleterm')"}
   use "kyazdani42/nvim-web-devicons"
-  use "akinsho/bufferline.nvim"
-  use "nvim-lualine/lualine.nvim"
   use "akinsho/toggleterm.nvim"
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
   use {'JoosepAlviste/nvim-ts-context-commentstring', after = 'nvim-treesitter'}
   use {'folke/which-key.nvim', config = "require('plugins.which-key')", event = "BufWinEnter"}
   use {'folke/trouble.nvim', config = "require('plugins.trouble')"}
-  use {"ellisonleao/glow.nvim"}
   use 'ggandor/lightspeed.nvim'
   use {'sindrets/diffview.nvim'}
   use {'github/copilot.vim'}
 
   -- Themes
-  use {'bluz71/vim-nightfly-guicolors'}
-  use {'folke/tokyonight.nvim'}
-  use {'EdenEast/nightfox.nvim'}
+  -- use {'bluz71/vim-nightfly-guicolors'}
+  -- use {'folke/tokyonight.nvim'}
+  -- use {'EdenEast/nightfox.nvim'}
   use {'gruvbox-community/gruvbox'}
 
   -- Harpoon
@@ -76,8 +73,9 @@ return packer.startup(function(use)
 
   -- statusline
   use {
-    'feline-nvim/feline.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons' },
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    config = "require('plugins.lualine')"
   }
 
   -- indent line
@@ -128,7 +126,15 @@ return packer.startup(function(use)
     event = "BufRead"
   }
 
-  -- Snippets & Language & Syntax
-  use {'p00f/nvim-ts-rainbow', after = {'nvim-treesitter'}}
-  use {'mattn/emmet-vim'}
-end)
+  use {
+    "AckslD/nvim-neoclip.lua",
+    config = function()
+      require("neoclip").setup()
+    end,
+  }
+
+  end,
+  config = {
+    -- max_jobs = 10,
+  },
+})
