@@ -65,7 +65,7 @@ return packer.startup({function(use)
   -- Themes
   -- use {'bluz71/vim-nightfly-guicolors'}
   -- use {'folke/tokyonight.nvim'}
-  -- use {'EdenEast/nightfox.nvim'}
+  use {'EdenEast/nightfox.nvim'}
   use {'gruvbox-community/gruvbox'}
 
   -- Harpoon
