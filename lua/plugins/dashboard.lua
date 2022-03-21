@@ -14,12 +14,13 @@ vim.g.dashboard_session_directory = '~/.config/nvim/sessions'
 vim.g.dashboard_default_executive = 'telescope'
 vim.g.dashboard_custom_section = {
   a = {description = {icons.fileNoBg ..            'Find File          '}, command = 'Telescope find_files hidden=true'},
-  b = {description = {icons.search ..              'Find Word          '}, command = 'Telescope live_grep'},
-  c = {description = {icons.hexCutOut ..           'Recents            '}, command = 'Telescope oldfiles hidden=true'},
-  d = {description = {icons.fileCopy ..            'Load Last Session  '}, command = 'SessionLoad'},
-  e = {description = {icons.light ..               'Sync Plugins       '}, command = 'PackerSync'},
-  f = {description = {icons.snippet ..             'Install Plugins    '}, command = 'PackerInstall'},
-  g = {description = {icons.settings ..            'Settings           '}, command = 'edit $MYVIMRC'},
-  h = {description = {icons.warningTriangle ..     'Exit               '}, command = 'exit'},
+  b = {description = {icons.fileBg ..              'New File           '}, command = 'DashboardNewFile'},
+  c = {description = {icons.search ..              'Find Word          '}, command = 'Telescope live_grep'},
+  d = {description = {icons.hexCutOut ..           'Recents            '}, command = 'Telescope oldfiles hidden=true'},
+  e = {description = {icons.fileCopy ..            'Load Last Session  '}, command = 'SessionLoad'},
+  f = {description = {icons.light ..               'Sync Plugins       '}, command = 'PackerSync'},
+  g = {description = {icons.snippet ..             'Install Plugins    '}, command = 'PackerInstall'},
+  h = {description = {icons.settings ..            'Settings           '}, command = 'edit $MYVIMRC'},
+  i = {description = {icons.warningTriangle ..     'Exit               '}, command = 'exit'},
 }
 vim.g.dashboard_custom_footer = {icons.container .. plugins_count .. " plugins loaded" }
