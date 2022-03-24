@@ -2,11 +2,11 @@ local icons = require("icons")
 
 M42 = {
   icons = icons,
-  colorscheme = 'gruvbox',
+  colorscheme = 'nordfox',
     ui = {
     float = {
       border = 'rounded',
-      highlight = 'gruvbox' -- check available by :Telescope highlights
+      highlight = 'nordfox' -- check available by :Telescope highlights
     }
   },
 }
