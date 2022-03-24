@@ -103,10 +103,17 @@ if vim.fn.has('macunix') == 1 then
 else
   keymap("n", "gx", "<cmd>silent execute '!xdg-open ' . shellescape('<cWORD>')<CR>", { silent = true })
 end
-
+-- if vim.fn.has("mac") == 1 then
+--   keymap("n", "gx", '<Cmd>call jobstart(["open", expand("<cfile>")], {"detach": v:true})<CR>', { silent = true })
+-- elseif vim.fn.has("unix") == 1 then
+--   keymap("n", "gx", '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach": v:true})<CR>', { silent = true })
+-- else
+--   keymap("n", "gx", '<Cmd>lua print("Error: gx is not supported on this OS!")<CR>', { silent = true })
+-- end
 -- LSP
 keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
 keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", { noremap = true, silent = true })
+keymap("n", "gh", "<cmd>lua vim.diagnostic.open_float( {border = 'rounded'} )<CR>", { noremap = true, silent = true })
 keymap("n", "<C-Space>", "<cmd>Telescope lsp_code_actions<CR>", { silent = true })
 keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { noremap = true, silent = true })
 keymap("v", "<leader>ca", "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<CR>", { noremap = true, silent = true })
