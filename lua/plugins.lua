@@ -68,6 +68,12 @@ return packer.startup({function(use)
   use {'EdenEast/nightfox.nvim'}
   use {'gruvbox-community/gruvbox'}
 
+  --CSS color
+  use {'norcalli/nvim-colorizer.lua', config = "require('plugins.colorizer')"}
+
+  --Markdown preview, Glow
+  use {"ellisonleao/glow.nvim"}
+
   -- Harpoon
   use {'ThePrimeagen/harpoon'}
 
