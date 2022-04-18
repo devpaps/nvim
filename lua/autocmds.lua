@@ -7,3 +7,6 @@ vim.api.nvim_create_autocmd("TextYankPost", { command = "silent! lua vim.highlig
 vim.api.nvim_create_augroup("LspNodeModules", { clear = true })
 vim.api.nvim_create_autocmd("BufRead", { pattern = "*/node_modules/*", command = "lua vim.diagnostic.disable(0)", group = 'LspNodeModules' })
 vim.api.nvim_create_autocmd("BufNewFile", { pattern = "*/node_modules/*", command = "lua vim.diagnostic.disable(0)", group = 'LspNodeModules' })
+
+-- vim.api.nvim_create_augroup("FormatOnSave", { clear = true })
+-- vim.api.nvim_create_autocmd("BufWritePost", { command = "lua vim.lsp.buf.formatting()", group = 'FormatOnSave' })

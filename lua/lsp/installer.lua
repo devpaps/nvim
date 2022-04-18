@@ -36,6 +36,12 @@ lsp_installer.on_server_ready(function(server)
             -- neovim's LSP client does not currently support dynamic capabilities registration, so we need to set
             -- the resolved capabilities of the eslint server ourselves!
             client.resolved_capabilities.document_formatting = true
+      		vim.cmd([[
+            augroup formatting
+              autocmd! * <buffer>
+              autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
+            augroup END
+            ]])
             on_attach(client, bufnr)
         end
         opts.settings = require('lsp.servers.eslint').settings

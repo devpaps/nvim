@@ -17,5 +17,9 @@ null_ls.setup {
       extra_filetypes = { "toml", "solidity" },
       extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
     },
+    -- diagnostics.eslint_d.with {
+    --   extra_filetypes = { "sol" },
+    --   extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
+    -- },
   },
 }

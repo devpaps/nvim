@@ -1,4 +1,12 @@
 local M = {}
+local eslint_d = {
+  lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
+  lintStdin = true,
+  lintFormats = {"%f:%l:%c: %m"},
+  lintIgnoreExitCode = true,
+  formatCommand = "eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}",
+  formatStdin = true
+}
 
 -- Auto-install
 
@@ -14,7 +22,11 @@ end
 -- Settings
 
 M.settings = {
-  format = { enable = true }
+  format = { enable = true };
+  languages = {
+    javascript = { eslint_d };
+    typescript = { eslint_d },
+  }
 }
 
 return M

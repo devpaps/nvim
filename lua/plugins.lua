@@ -53,7 +53,6 @@ return packer.startup({function(use)
   use {"numToStr/Comment.nvim", config = "require('plugins.comment')"} -- Easily comment stuff
   use {'akinsho/nvim-toggleterm.lua', config = "require('plugins.toggleterm')"}
   use "kyazdani42/nvim-web-devicons"
-  use "akinsho/toggleterm.nvim"
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
   use {'JoosepAlviste/nvim-ts-context-commentstring', after = 'nvim-treesitter'}
   use {'folke/which-key.nvim', config = "require('plugins.which-key')", event = "BufWinEnter"}
@@ -61,11 +60,14 @@ return packer.startup({function(use)
   use 'ggandor/lightspeed.nvim'
   use {'sindrets/diffview.nvim'}
   use {'github/copilot.vim'}
+  use 'xiyaowong/nvim-transparent'
+  use 'wakatime/vim-wakatime'
+  use {'j-hui/fidget.nvim', config = "require('plugins.fidget')"}
 
   -- Themes
   -- use {'bluz71/vim-nightfly-guicolors'}
   -- use {'folke/tokyonight.nvim'}
-  use {'EdenEast/nightfox.nvim'}
+  -- use {'EdenEast/nightfox.nvim'}
   use {'gruvbox-community/gruvbox'}
 
   --CSS color
@@ -75,7 +77,7 @@ return packer.startup({function(use)
   use {"ellisonleao/glow.nvim"}
 
   -- Harpoon
-  use {'ThePrimeagen/harpoon'}
+  -- use {'ThePrimeagen/harpoon'}
 
   -- statusline
   use {
@@ -97,9 +99,10 @@ return packer.startup({function(use)
 
   --LSP
   use {"jose-elias-alvarez/null-ls.nvim", config = "require('lsp.null-ls')"} -- for formatters and linters
+  use {'jose-elias-alvarez/nvim-lsp-ts-utils', after = {'nvim-treesitter'}} -- for typescript
 
   -- autocomplete
-  use 'hrsh7th/nvim-cmp'
+  use {'hrsh7th/nvim-cmp', config = "require('plugins.nvim-cmp')"}
   use {'onsails/lspkind-nvim'}
   use 'L3MON4D3/LuaSnip'
   use 'hrsh7th/cmp-nvim-lsp'
@@ -132,15 +135,12 @@ return packer.startup({function(use)
     event = "BufRead"
   }
 
-  use {
-    "AckslD/nvim-neoclip.lua",
-    config = function()
-      require("neoclip").setup()
-    end,
-  }
+  -- use {
+  --   "AckslD/nvim-neoclip.lua",
+  --   config = function()
+  --     require("neoclip").setup()
+  --   end,
+  -- }
 
   end,
-  config = {
-    -- max_jobs = 10,
-  },
 })
