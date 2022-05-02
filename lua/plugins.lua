@@ -46,7 +46,7 @@ return packer.startup({function(use)
   use {'glepnir/dashboard-nvim', config = "require('plugins.dashboard')"}
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = "require('plugins.treesitter')"}
   use 'neovim/nvim-lspconfig'
-  use {'williamboman/nvim-lsp-installer', event = 'BufEnter', after = 'cmp-nvim-lsp', config = "require('lsp.installer')"}
+  use {'williamboman/nvim-lsp-installer', event = 'BufEnter', after = 'cmp-nvim-lsp'}
   use {'romgrk/barbar.nvim', config = "require('plugins.barbar')"}
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
@@ -62,6 +62,11 @@ return packer.startup({function(use)
   use {'github/copilot.vim'}
   use 'xiyaowong/nvim-transparent'
   use 'wakatime/vim-wakatime'
+
+  -- Rust
+  use {'simrat39/rust-tools.nvim', config = "require('plugins.rust')"}
+
+  -- Show loading LSP status
   use {'j-hui/fidget.nvim', config = "require('plugins.fidget')"}
 
   -- Rust
@@ -115,12 +120,12 @@ return packer.startup({function(use)
   use "rafamadriz/friendly-snippets"
 
   --Nvim Tree
-  use {'kyazdani42/nvim-tree.lua', config = "require('plugins.tree')"}
+  use {'kyazdani42/nvim-tree.lua', branch = "master" ,config = "require('plugins.tree')"}
   use {'airblade/vim-rooter'}
 
   -- Telescope
   use {'nvim-telescope/telescope.nvim',
-      config = "require('plugins.telescope')",
+      config = "require('plugins.telescope/init')",
       requires = {
         {'nvim-lua/popup.nvim'},
         {'nvim-lua/plenary.nvim'},

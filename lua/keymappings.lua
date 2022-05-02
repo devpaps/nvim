@@ -36,7 +36,7 @@ keymap("i", "<C-s>", "<ESC> :w<CR>", { noremap = true, silent = true })
 
 -- Telescope
 keymap("n", "<C-p>", "<CMD>lua require('plugins.telescope').project_files()<CR>", { noremap = true })
-keymap("n", "<S-p>", "<CMD>Telescope live_grep<CR>", { noremap = true })
+keymap("n", "<S-p>", "<CMD>lua require('plugins.telescope.pickers.multi-rg')()<CR>", { noremap = true })
 keymap("n", "<A-p>", "<CMD>Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>" , { noremap = true })
 
 -- Remove highlights
@@ -112,7 +112,7 @@ end
 -- end
 -- LSP
 keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
-keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", { noremap = true, silent = true })
+keymap("n", "gr", "<cmd>Telescope lsp_references({ includeDeclaration = false })<CR>", { noremap = true, silent = true })
 keymap("n", "gh", "<cmd>lua vim.diagnostic.open_float( {border = 'rounded'} )<CR>", { noremap = true, silent = true })
 keymap("n", "<C-Space>", "<cmd>Telescope lsp_code_actions<CR>", { silent = true })
 keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { noremap = true, silent = true })

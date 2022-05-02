@@ -1,31 +1,39 @@
 local M = {}
-local eslint_d = {
-  lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
-  lintStdin = true,
-  lintFormats = {"%f:%l:%c: %m"},
-  lintIgnoreExitCode = true,
-  formatCommand = "eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}",
-  formatStdin = true
-}
 
--- Auto-install
+local on_attach = function(client, bufnr)
+  client.server_capabilities.document_formatting = true
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-local lsp_installer_servers = require'nvim-lsp-installer.servers'
-
-local ok, eslint = lsp_installer_servers.get_server("eslint")
-if ok then
-    if not eslint:is_installed() then
-        eslint:install()
-    end
+  buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 end
 
--- Settings
+M.on_attach = on_attach;
 
 M.settings = {
-  format = { enable = true };
-  languages = {
-    javascript = { eslint_d };
-    typescript = { eslint_d },
+  codeAction = {
+    disableRuleComment = {
+      enable = true,
+      location = "separateLine"
+    },
+    showDocumentation = {
+      enable = true
+    }
+  },
+  codeActionOnSave = {
+    enable = false,
+    mode = "all"
+  },
+  format = true,
+  nodePath = "",
+  onIgnoredFiles = "off",
+  packageManager = "npm",
+  quiet = false,
+  rulesCustomizations = {},
+  run = "onType",
+  useESLintClass = false,
+  validate = "on",
+  workingDirectory = {
+    mode = "location"
   }
 }
 

@@ -1,13 +1,6 @@
-local handlers =  {
-  ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = EcoVim.ui.float.border}),
-  ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = EcoVim.ui.float.border}),
-}
+local M = {}
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-local status_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
-if status_ok then
-  capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
-end
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.preselectSupport = true
 capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
@@ -22,6 +15,28 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
     'additionalTextEdits',
   }
 }
+capabilities.textDocument.codeAction = {
+  dynamicRegistration = false,
+  codeActionLiteralSupport = {
+    codeActionKind = {
+      valueSet = {
+        "",
+        "quickfix",
+        "refactor",
+        "refactor.extract",
+        "refactor.inline",
+        "refactor.rewrite",
+        "source",
+        "source.organizeImports",
+      },
+    },
+  },
+}
+
+local on_attach = function(client, bufnr)
+  client.server_capabilities.document_formatting = false
+  client.server_capabilities.document_range_formatting = false
+
 
 -- npm install -g typescript typescript-language-server
 require'lspconfig'.tsserver.setup({
@@ -31,47 +46,52 @@ require'lspconfig'.tsserver.setup({
     client.server_capabilities.document_formatting = false
     client.server_capabilities.document_range_formatting = false
 
-    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-    buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+  buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
-    require("nvim-lsp-ts-utils").setup {
-        debug = false,
-        disable_commands = false,
-        enable_import_on_completion = true,
-        import_all_timeout = 5000, -- ms
 
-        -- eslint
-        eslint_enable_code_actions = false,
-        eslint_enable_disable_comments = false,
-        eslint_bin = 'eslint_d',
-        eslint_config_fallback = nil,
-        eslint_enable_diagnostics = false,
-        eslint_opts = {
-          -- diagnostics_format = "#{m} [#{c}]",
-          condition = function(utils)
-              return utils.root_has_file(".eslintrc.js")
-          end,
-        },
+  require("nvim-lsp-ts-utils").setup {
+    debug = false,
+    disable_commands = false,
+    enable_import_on_completion = true,
+    import_all_timeout = 5000, -- ms
 
-        -- formatting
-        enable_formatting = false,
-        formatter = 'prettier_d_slim',
-        formatter_config_fallback = nil,
+    -- eslint
+    eslint_enable_code_actions = false,
+    eslint_enable_disable_comments = false,
+    eslint_bin = 'eslint_d',
+    eslint_config_fallback = nil,
+    eslint_enable_diagnostics = false,
+    eslint_opts = {
+      -- diagnostics_format = "#{m} [#{c}]",
+      condition = function(utils)
+        return utils.root_has_file(".eslintrc.js")
+      end,
+    },
 
-        -- parentheses completion
-        complete_parens = false,
-        signature_help_in_parens = false,
+    -- formatting
+    enable_formatting = false,
+    formatter = 'prettier_d_slim',
+    formatter_config_fallback = nil,
 
-        -- update imports on file move
-        update_imports_on_move = true,
-        require_confirmation_on_move = true,
-        watch_dir = nil,
+    -- parentheses completion
+    complete_parens = false,
+    signature_help_in_parens = false,
 
-        -- filter diagnostics
-        filter_out_diagnostics_by_severity = { "hint" },
-        filter_out_diagnostics_by_code = {},
-    }
+    -- update imports on file move
+    update_imports_on_move = true,
+    require_confirmation_on_move = true,
+    watch_dir = nil,
 
-    require("nvim-lsp-ts-utils").setup_client(client)
-  end
-})
+    -- filter diagnostics
+    filter_out_diagnostics_by_severity = { "hint" },
+    filter_out_diagnostics_by_code = {},
+  }
+
+  require("nvim-lsp-ts-utils").setup_client(client)
+end
+
+M.capabilities = capabilities;
+M.on_attach = on_attach;
+
+return M
