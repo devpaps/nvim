@@ -18,7 +18,7 @@ keymap("n", "<Leader>ph", "<CMD>lua require('harpoon.ui').toggle_quick_menu()<CR
 keymap("n", "<Leader>pm", "<CMD>lua require('harpoon.mark).add_file()<CR>", {noremap = true})
 
 -- Format
-keymap("n", "<C-f>", "<CMD>lua vim.lsp.buf.formatting_sync()<CR>", {noremap = true})
+keymap("n", "<C-f>", "<CMD>lua vim.lsp.buf.format()<CR>", {noremap = true})
 
 -- Better window movment
 keymap("n", "<C-h>", "<C-w>h", opts)
@@ -118,7 +118,7 @@ keymap("n", "<C-Space>", "<cmd>Telescope lsp_code_actions<CR>", { silent = true 
 keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { noremap = true, silent = true })
 keymap("v", "<leader>ca", "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<CR>", { noremap = true, silent = true })
 keymap("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", { noremap = true, silent = true })
-keymap("n", "<leader>cf", "<cmd>lua vim.lsp.buf.formatting()<CR>", { noremap = true, silent = true })
+keymap("n", "<leader>cf", "<cmd>lua vim.lsp.buf.format()<CR>", { noremap = true, silent = true })
 keymap("v", "<leader>cf", "<cmd>'<.'>lua vim.lsp.buf.range_formatting()<CR>", { noremap = true, silent = true })
 keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true })
 keymap("n", "L", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { noremap = true, silent = true })
