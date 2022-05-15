@@ -69,9 +69,6 @@ return packer.startup({function(use)
   -- Show loading LSP status
   use {'j-hui/fidget.nvim', config = "require('plugins.fidget')"}
 
-  -- Rust
-  use {'simrat39/rust-tools.nvim', config = "require('plugins.rust')"}
-
   -- Themes
   -- use {'bluz71/vim-nightfly-guicolors'}
   -- use {'folke/tokyonight.nvim'}

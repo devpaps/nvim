@@ -1,31 +1,17 @@
--- Automatically install servers
+-- Setup installer & lsp configs
+local typescript_ok, typescript = pcall(require, 'typescript')
+local lsp_installer_ok, lsp_installer = pcall(require, 'nvim-lsp-installer')
 
-local status_ok, lsp_installer_servers = pcall(require, 'nvim-lsp-installer.servers')
-if status_ok then
-  for _, server in ipairs {
-    "bashls",
-    "cssls",
-    "eslint",
-    "graphql",
-    "html",
-    "sumneko_lua",
-    "tailwindcss",
-    "tsserver",
-    "vetur",
-    "vuels",
-  } do
-    local ok, server_name = lsp_installer_servers.get_server(server)
-    if ok then
-      if not server_name:is_installed() then
-        server_name:install()
-      end
-    end
-  end
+if not lsp_installer_ok then
+  return
 end
 
--- Setup installer & lsp configs
-
-require("nvim-lsp-installer").setup {}
+lsp_installer.setup {
+  -- A list of servers to automatically install if they're not already installed
+  ensure_installed = { "bashls", "cssls", "eslint", "graphql", "html", "jsonls", "sumneko_lua", "tailwindcss", "tsserver", "vetur", "vuels" },
+  -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed
+  automatic_installation = true,
+}
 local lspconfig = require("lspconfig")
 
 local handlers = {
@@ -43,17 +29,22 @@ if cmp_nvim_lsp_ok then
   capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 end
 
-lspconfig.sumneko_lua.setup {
-  handlers = handlers,
-  on_attach = on_attach,
-  settings = require('lsp.servers.sumneko_lua').settings,
-}
+-- Order matters
 
-lspconfig.tsserver.setup {
-  capabilities = require('lsp.servers.tsserver').capabilities,
-  handlers = handlers,
-  on_attach = require('lsp.servers.tsserver').on_attach,
-}
+-- It enables tsserver automatically so no need to call lspconfig.tsserver.setup
+if typescript_ok then
+  typescript.setup({
+    disable_commands = false, -- prevent the plugin from creating Vim commands
+    disable_formatting = false, -- disable tsserver's formatting capabilities
+    debug = false, -- enable debug logging for commands
+    -- LSP Config options
+    server = {
+      capabilities = require('lsp.servers.tsserver').capabilities,
+      handlers = handlers,
+      on_attach = require('lsp.servers.tsserver').on_attach,
+    }
+  })
+end
 
 lspconfig.tailwindcss.setup {
   capabilities = require('lsp.servers.tsserver').capabilities,
@@ -64,20 +55,12 @@ lspconfig.tailwindcss.setup {
   settings = require('lsp.servers.tailwindcss').settings,
 }
 
-lspconfig.vuels.setup {
-  filetypes = require('lsp.servers.vuels').filetypes,
-  handlers = handlers,
-  init_options = require('lsp.servers.vuels').init_options,
-  on_attach = on_attach,
-}
-
 lspconfig.eslint.setup {
   capabilities = capabilities,
   handlers = handlers,
   on_attach = require('lsp.servers.eslint').on_attach,
   settings = require('lsp.servers.eslint').settings,
 }
-
 
 -- lspconfig.jsonls.setup {
 --   capabilities = capabilities,
@@ -86,7 +69,21 @@ lspconfig.eslint.setup {
 --   settings = require('lsp.servers.jsonls').settings,
 -- }
 
-for _, server in ipairs { "bashls", "cssls", "graphql", "html" } do
+lspconfig.sumneko_lua.setup {
+  handlers = handlers,
+  on_attach = on_attach,
+  settings = require('lsp.servers.sumneko_lua').settings,
+}
+
+lspconfig.vuels.setup {
+  filetypes = require('lsp.servers.vuels').filetypes,
+  handlers = handlers,
+  init_options = require('lsp.servers.vuels').init_options,
+  on_attach = on_attach,
+}
+
+
+for _, server in ipairs { "bashls", "cssls", "graphql", "html", "volar" } do
   lspconfig[server].setup {
     on_attach = on_attach,
     capabilities = capabilities,
