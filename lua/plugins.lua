@@ -38,48 +38,53 @@ packer.init {
   },
 }
 
-return packer.startup({function(use)
+return packer.startup({ function(use)
   -- Packer can manage it self
   use 'wbthomason/packer.nvim'
   use 'lewis6991/impatient.nvim'
   use "nathom/filetype.nvim" -- Faster statup
-  use {'glepnir/dashboard-nvim', config = "require('plugins.dashboard')"}
-  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = "require('plugins.treesitter')"}
+  use { 'glepnir/dashboard-nvim', config = "require('plugins.dashboard')" }
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = "require('plugins.treesitter')" }
   use 'neovim/nvim-lspconfig'
-  use {'williamboman/nvim-lsp-installer', event = 'BufEnter', after = 'cmp-nvim-lsp'}
-  use {'romgrk/barbar.nvim', config = "require('plugins.barbar')"}
+  use { 'williamboman/nvim-lsp-installer', event = 'BufEnter', after = 'cmp-nvim-lsp' }
+  use { 'romgrk/barbar.nvim', config = "require('plugins.barbar')" }
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
-  use {"numToStr/Comment.nvim", config = "require('plugins.comment')"} -- Easily comment stuff
-  use {'akinsho/nvim-toggleterm.lua', config = "require('plugins.toggleterm')"}
+  use { "numToStr/Comment.nvim", config = "require('plugins.comment')" } -- Easily comment stuff
+  use { 'akinsho/nvim-toggleterm.lua', config = "require('plugins.toggleterm')" }
   use "kyazdani42/nvim-web-devicons"
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
-  use {'JoosepAlviste/nvim-ts-context-commentstring', after = 'nvim-treesitter'}
-  use {'folke/which-key.nvim', config = "require('plugins.which-key')", event = "BufWinEnter"}
-  use {'folke/trouble.nvim', config = "require('plugins.trouble')"}
+  use { 'JoosepAlviste/nvim-ts-context-commentstring', after = 'nvim-treesitter' }
+  use { 'folke/which-key.nvim', config = "require('plugins.which-key')", event = "BufWinEnter" }
+  use { 'folke/trouble.nvim', config = "require('plugins.trouble')" }
   use 'ggandor/lightspeed.nvim'
-  use {'sindrets/diffview.nvim'}
-  use {'github/copilot.vim'}
+  use { 'sindrets/diffview.nvim' }
+  use { 'github/copilot.vim' }
   use 'xiyaowong/nvim-transparent'
   use 'wakatime/vim-wakatime'
+    use({
+    "jose-elias-alvarez/nvim-lsp-ts-utils",
+    requires = { "nvim-lua/plenary.nvim" },
+  })
+  use { 'jose-elias-alvarez/typescript.nvim' }
 
   -- Rust
-  use {'simrat39/rust-tools.nvim', config = "require('plugins.rust')"}
+  use { 'simrat39/rust-tools.nvim', config = "require('plugins.rust')" }
 
   -- Show loading LSP status
-  use {'j-hui/fidget.nvim', config = "require('plugins.fidget')"}
+  use { 'j-hui/fidget.nvim', config = "require('plugins.fidget')" }
 
   -- Themes
   -- use {'bluz71/vim-nightfly-guicolors'}
   -- use {'folke/tokyonight.nvim'}
   -- use {'EdenEast/nightfox.nvim'}
-  use {'gruvbox-community/gruvbox'}
+  use { 'gruvbox-community/gruvbox' }
 
   --CSS color
-  use {'norcalli/nvim-colorizer.lua', config = "require('plugins.colorizer')"}
+  use { 'norcalli/nvim-colorizer.lua', config = "require('plugins.colorizer')" }
 
   --Markdown preview, Glow
-  use {"ellisonleao/glow.nvim"}
+  use { "ellisonleao/glow.nvim" }
 
   -- Harpoon
   -- use {'ThePrimeagen/harpoon'}
@@ -92,9 +97,9 @@ return packer.startup({function(use)
   }
 
   -- indent line
-  use {'lukas-reineke/indent-blankline.nvim', config = "require('plugins.indent')"}
+  use { 'lukas-reineke/indent-blankline.nvim', config = "require('plugins.indent')" }
 
- -- autopair
+  -- autopair
   use {
     'windwp/nvim-autopairs',
     config = function()
@@ -103,12 +108,12 @@ return packer.startup({function(use)
   }
 
   --LSP
-  use {"jose-elias-alvarez/null-ls.nvim", config = "require('lsp.null-ls')"} -- for formatters and linters
-  use {'jose-elias-alvarez/nvim-lsp-ts-utils', after = {'nvim-treesitter'}} -- for typescript
+  -- use { "jose-elias-alvarez/null-ls.nvim", config = "require('lsp.null-ls')" } -- for formatters and linters
+  -- use { 'jose-elias-alvarez/nvim-lsp-ts-utils', after = { 'nvim-treesitter' } } -- for typescript
 
   -- autocomplete
-  use {'hrsh7th/nvim-cmp', config = "require('plugins.nvim-cmp')"}
-  use {'onsails/lspkind-nvim'}
+  use { 'hrsh7th/nvim-cmp', config = "require('plugins.nvim-cmp')" }
+  use { 'onsails/lspkind-nvim' }
   use 'L3MON4D3/LuaSnip'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-path'
@@ -117,24 +122,24 @@ return packer.startup({function(use)
   use "rafamadriz/friendly-snippets"
 
   --Nvim Tree
-  use {'kyazdani42/nvim-tree.lua', branch = "master" ,config = "require('plugins.tree')"}
-  use {'airblade/vim-rooter'}
+  use { 'kyazdani42/nvim-tree.lua', branch = "master", config = "require('plugins.tree')" }
+  use { 'airblade/vim-rooter' }
 
   -- Telescope
-  use {'nvim-telescope/telescope.nvim',
-      config = "require('plugins.telescope/init')",
-      requires = {
-        {'nvim-lua/popup.nvim'},
-        {'nvim-lua/plenary.nvim'},
-        {'nvim-telescope/telescope-fzf-native.nvim'}
-      }
+  use { 'nvim-telescope/telescope.nvim',
+    config = "require('plugins.telescope/init')",
+    requires = {
+      { 'nvim-lua/popup.nvim' },
+      { 'nvim-lua/plenary.nvim' },
+      { 'nvim-telescope/telescope-fzf-native.nvim' }
     }
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  use {'cljoly/telescope-repo.nvim'}
+  }
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  use { 'cljoly/telescope-repo.nvim' }
 
 
   -- Git
-  use {'lewis6991/gitsigns.nvim',
+  use { 'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
     config = "require('plugins.gitsigns')",
     event = "BufRead"
@@ -147,5 +152,5 @@ return packer.startup({function(use)
   --   end,
   -- }
 
-  end,
+end,
 })
