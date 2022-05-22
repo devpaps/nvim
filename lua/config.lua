@@ -11,4 +11,9 @@ M42 = {
       highlight = 'gruvbox' -- check available by :Telescope highlights
     }
   },
+  plugins = {
+    completion = {
+      select_first_on_enter = false
+    }
+  }
 }
