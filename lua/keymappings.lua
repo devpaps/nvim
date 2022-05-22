@@ -14,11 +14,11 @@ vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true,
 keymap("n", ",tn", "<CMD>lua require('neoclip').toggle()<CR>", { noremap = true, silent = true })
 
 -- Harpoon
-keymap("n", "<Leader>ph", "<CMD>lua require('harpoon.ui').toggle_quick_menu()<CR>", {noremap = true})
-keymap("n", "<Leader>pm", "<CMD>lua require('harpoon.mark).add_file()<CR>", {noremap = true})
+keymap("n", "<Leader>ph", "<CMD>lua require('harpoon.ui').toggle_quick_menu()<CR>", { noremap = true })
+keymap("n", "<Leader>pm", "<CMD>lua require('harpoon.mark).add_file()<CR>", { noremap = true })
 
 -- Format
-keymap("n", "<C-f>", "<CMD>lua vim.lsp.buf.format()<CR>", {noremap = true})
+keymap("n", "<C-f>", "<CMD>lua vim.lsp.buf.format()<CR>", { noremap = true })
 
 -- Better window movment
 keymap("n", "<C-h>", "<C-w>h", opts)
@@ -37,7 +37,7 @@ keymap("i", "<C-s>", "<ESC> :w<CR>", { noremap = true, silent = true })
 -- Telescope
 keymap("n", "<C-p>", "<CMD>lua require('plugins.telescope').project_files()<CR>", { noremap = true })
 keymap("n", "<S-p>", "<CMD>lua require('plugins.telescope.pickers.multi-rg')()<CR>", { noremap = true })
-keymap("n", "<A-p>", "<CMD>Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>" , { noremap = true })
+keymap("n", "<A-p>", "<CMD>Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>", { noremap = true })
 
 -- Remove highlights
 keymap("n", "<CR>", ":noh<CR><CR>", { noremap = true, silent = true })
@@ -52,11 +52,11 @@ keymap("n", "<Leader>gla", "<CMD>lua require('plugins.telescope').my_git_commits
 keymap("n", "<Leader>glc", "<CMD>lua require('plugins.telescope').my_git_bcommits()<CR>", { noremap = true, silent = true })
 
 -- Buffers
-keymap("n", "<Tab>", ":BufferNext<CR>", { noremap = true, silent = true })
-keymap("n", "gn", ":bn<CR>", { noremap = true, silent = true })
-keymap("n", "<S-Tab>", ":BufferPrevious<CR>", { noremap = true, silent = true })
-keymap("n", "gp", ":bp<CR>", { noremap = true, silent = true })
-keymap("n", "<S-q>", ":BufferClose<CR>", { noremap = true, silent = true })
+keymap("n", "<Tab>", ":bnext<CR>", { noremap = true, silent = true })
+keymap("n", "gn", ":bnext<CR>", { noremap = true, silent = true })
+keymap("n", "<S-Tab>", ":bprevious<CR>", { noremap = true, silent = true })
+keymap("n", "gp", ":bprevious<CR>", { noremap = true, silent = true })
+keymap("n", "<S-q>", ":bnext<CR>", { noremap = true, silent = true })
 
 -- Move between barbar buffers
 keymap("n", "<Space>1", ":BufferGoto 1<CR>", { silent = true })
@@ -111,16 +111,16 @@ end
 --   keymap("n", "gx", '<Cmd>lua print("Error: gx is not supported on this OS!")<CR>', { silent = true })
 -- end
 -- LSP
-keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
-keymap("n", "gr", "<cmd>Telescope lsp_references({ includeDeclaration = false })<CR>", { noremap = true, silent = true })
-keymap("n", "gh", "<cmd>lua vim.diagnostic.open_float( {border = 'rounded'} )<CR>", { noremap = true, silent = true })
+keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { silent = true })
+keymap("n", "gr", "<cmd>Telescope lsp_references({ includeDeclaration = false })<CR>", { silent = true })
+keymap("n", "gh", "<cmd>lua vim.diagnostic.open_float( {border = 'rounded', max_width = 150} )<CR>", { silent = true })
 keymap("n", "<C-Space>", "<cmd>Telescope lsp_code_actions<CR>", { silent = true })
-keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { noremap = true, silent = true })
-keymap("v", "<leader>ca", "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<CR>", { noremap = true, silent = true })
-keymap("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", { noremap = true, silent = true })
-keymap("n", "<leader>cf", "<cmd>lua vim.lsp.buf.format()<CR>", { noremap = true, silent = true })
-keymap("v", "<leader>cf", "<cmd>'<.'>lua vim.lsp.buf.range_formatting()<CR>", { noremap = true, silent = true })
-keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true })
-keymap("n", "L", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { noremap = true, silent = true })
-keymap("n", "]g", "<cmd>lua vim.diagnostic.goto_next({ float = { border = 'rounded' }})<CR>", { noremap = true, silent = true })
-keymap("n", "[g", "<cmd>lua vim.diagnostic.goto_prev({ float = { border = 'rounded' }})<CR>", { noremap = true, silent = true })
+keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { silent = true })
+keymap("v", "<leader>ca", "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<CR>", { silent = true })
+keymap("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", { silent = true })
+keymap("n", "<leader>cf", "<cmd>lua vim.lsp.buf.format({async = true})<CR>", { silent = true })
+keymap("v", "<leader>cf", "<cmd>'<.'>lua vim.lsp.buf.range_formatting()<CR>", { silent = true })
+keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { silent = true })
+keymap("n", "L", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { silent = true })
+keymap("n", "]g", "<cmd>lua vim.diagnostic.goto_next({ float = { border = 'rounded' }})<CR>", { silent = true })
+keymap("n", "[g", "<cmd>lua vim.diagnostic.goto_prev({ float = { border = 'rounded' }})<CR>", { silent = true })
