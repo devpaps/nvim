@@ -52,11 +52,11 @@ keymap("n", "<Leader>gla", "<CMD>lua require('plugins.telescope').my_git_commits
 keymap("n", "<Leader>glc", "<CMD>lua require('plugins.telescope').my_git_bcommits()<CR>", { noremap = true, silent = true })
 
 -- Buffers
-keymap("n", "<Tab>", ":bnext<CR>", { noremap = true, silent = true })
-keymap("n", "gn", ":bnext<CR>", { noremap = true, silent = true })
-keymap("n", "<S-Tab>", ":bprevious<CR>", { noremap = true, silent = true })
-keymap("n", "gp", ":bprevious<CR>", { noremap = true, silent = true })
-keymap("n", "<S-q>", ":bnext<CR>", { noremap = true, silent = true })
+keymap("n", "<Tab>", ":BufferNext<CR>", { noremap = true, silent = true })
+keymap("n", "gn", ":bn<CR>", { noremap = true, silent = true })
+keymap("n", "<S-Tab>", ":BufferPrevious<CR>", { noremap = true, silent = true })
+keymap("n", "gp", ":bp<CR>", { noremap = true, silent = true })
+keymap("n", "<S-q>", ":BufferClose<CR>", { noremap = true, silent = true })
 
 -- Move between barbar buffers
 keymap("n", "<Space>1", ":BufferGoto 1<CR>", { silent = true })
@@ -114,7 +114,7 @@ end
 keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { silent = true })
 keymap("n", "gr", "<cmd>Telescope lsp_references({ includeDeclaration = false })<CR>", { silent = true })
 keymap("n", "gh", "<cmd>lua vim.diagnostic.open_float( {border = 'rounded', max_width = 150} )<CR>", { silent = true })
-keymap("n", "<C-Space>", "<cmd>Telescope lsp_code_actions<CR>", { silent = true })
+keymap("n", "<C-Space>", "<cmd>lua vim.lsp.buf.code_action()<CR>", { silent = true })
 keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { silent = true })
 keymap("v", "<leader>ca", "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<CR>", { silent = true })
 keymap("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", { silent = true })
