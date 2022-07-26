@@ -4,12 +4,15 @@ local icons = require("icons")
 
 M42 = {
   icons = icons,
-  colorscheme = 'gruvbox',
+  colorscheme = 'kanagawa',
     ui = {
     float = {
       border = 'rounded',
-      highlight = 'gruvbox' -- check available by :Telescope highlights
-    }
+      highlight = 'kanagawa' -- check available by :Telescope highlights
+    },
+    background = {
+      guifg = "#488DFF"
+    },
   },
   plugins = {
     completion = {
