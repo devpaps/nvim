@@ -43,7 +43,8 @@ return packer.startup({ function(use)
   use 'wbthomason/packer.nvim'
   use 'lewis6991/impatient.nvim'
   use "nathom/filetype.nvim" -- Faster statup
-  use { 'glepnir/dashboard-nvim', config = "require('plugins.dashboard')" }
+  -- use { 'glepnir/dashboard-nvim', config = "require('plugins.dashboard')" }
+  use { 'goolord/alpha-nvim', config = "require('plugins.alpha')" }
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = "require('plugins.treesitter')" }
   use 'neovim/nvim-lspconfig'
   use { 'williamboman/nvim-lsp-installer', event = 'BufEnter', after = 'cmp-nvim-lsp' }
@@ -78,7 +79,8 @@ return packer.startup({ function(use)
   -- use {'bluz71/vim-nightfly-guicolors'}
   -- use {'folke/tokyonight.nvim'}
   -- use {'EdenEast/nightfox.nvim'}
-  use { 'gruvbox-community/gruvbox' }
+  -- use { 'gruvbox-community/gruvbox' }
+  use 'rebelot/kanagawa.nvim'
 
   --CSS color
   use { 'norcalli/nvim-colorizer.lua', config = "require('plugins.colorizer')" }
