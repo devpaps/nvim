@@ -30,6 +30,10 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
+-- Move selected text around
+keymap("v", "K", ":m '<-2<CR>gv=gv", opts)
+keymap("v", "J", ":m '>+1<CR>gv=gv", opts)
+
 -- Save file by CTRL-S
 keymap("n", "<C-s>", ":w<CR>", { noremap = true, silent = true })
 keymap("i", "<C-s>", "<ESC> :w<CR>", { noremap = true, silent = true })
