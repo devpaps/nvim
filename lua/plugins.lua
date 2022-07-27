@@ -69,6 +69,9 @@ return packer.startup({ function(use)
   })
   use { 'jose-elias-alvarez/typescript.nvim' }
 
+  -- Sessionmanager
+  use { 'Shatur/neovim-session-manager', config = "require('plugins.session-manager')" }
+
   -- Rust
   use { 'simrat39/rust-tools.nvim', config = "require('plugins.rust')" }
 
