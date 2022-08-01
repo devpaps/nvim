@@ -47,7 +47,9 @@ return packer.startup({ function(use)
   use { 'goolord/alpha-nvim', config = "require('plugins.alpha')" }
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = "require('plugins.treesitter')" }
   use 'neovim/nvim-lspconfig'
-  use { 'williamboman/nvim-lsp-installer', event = 'BufEnter', after = 'cmp-nvim-lsp' }
+  -- use { 'williamboman/nvim-lsp-installer', event = 'BufEnter', after = 'cmp-nvim-lsp' }
+  use { 'williamboman/mason.nvim' }
+  use { 'williamboman/mason-lspconfig.nvim' }
   use { 'romgrk/barbar.nvim', config = "require('plugins.barbar')" }
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
@@ -63,7 +65,7 @@ return packer.startup({ function(use)
   use { 'github/copilot.vim' }
   use 'xiyaowong/nvim-transparent'
   use 'wakatime/vim-wakatime'
-    use({
+  use({
     "jose-elias-alvarez/nvim-lsp-ts-utils",
     requires = { "nvim-lua/plenary.nvim" },
   })
@@ -79,11 +81,16 @@ return packer.startup({ function(use)
   use { 'j-hui/fidget.nvim', config = "require('plugins.fidget')" }
 
   -- Themes
-  -- use {'bluz71/vim-nightfly-guicolors'}
+  use {'bluz71/vim-nightfly-guicolors'}
   -- use {'folke/tokyonight.nvim'}
   -- use {'EdenEast/nightfox.nvim'}
   -- use { 'gruvbox-community/gruvbox' }
-  use 'rebelot/kanagawa.nvim'
+  -- use 'rebelot/kanagawa.nvim'
+
+  use({
+    'glepnir/zephyr-nvim',
+    requires = { 'nvim-treesitter/nvim-treesitter', opt = true },
+  })
 
   --CSS color
   use { 'norcalli/nvim-colorizer.lua', config = "require('plugins.colorizer')" }
