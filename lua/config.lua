@@ -4,11 +4,11 @@ local icons = require("icons")
 
 M42 = {
   icons = icons,
-  colorscheme = 'kanagawa',
+  colorscheme = 'nightfly',
     ui = {
     float = {
       border = 'rounded',
-      highlight = 'kanagawa' -- check available by :Telescope highlights
+      highlight = 'nightfly' -- check available by :Telescope highlights
     },
     background = {
       guifg = "#488DFF"
