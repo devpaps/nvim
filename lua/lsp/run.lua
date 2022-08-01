@@ -1,17 +1,46 @@
 -- Setup installer & lsp configs
 local typescript_ok, typescript = pcall(require, 'typescript')
-local lsp_installer_ok, lsp_installer = pcall(require, 'nvim-lsp-installer')
+-- local lsp_installer_ok, lsp_installer = pcall(require, 'nvim-lsp-installer')
 
-if not lsp_installer_ok then
+-- if not lsp_installer_ok then
+--   return
+-- end
+
+-- lsp_installer.setup {
+--   -- A list of servers to automatically install if they're not already installed
+--   ensure_installed = { "bashls", "cssls", "eslint", "graphql", "html", "jsonls", "sumneko_lua", "tailwindcss", "tsserver", "vetur", "vuels" },
+--   -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed
+--   automatic_installation = true,
+-- }
+local mason_ok, mason = pcall(require, 'mason')
+local mason_lsp_ok, mason_lsp = pcall(require, 'mason-lspconfig')
+
+if not mason_ok or not mason_lsp_ok then
   return
 end
 
-lsp_installer.setup {
+mason.setup {
+  ui = {
+    -- The border to use for the UI window. Accepts same border values as |nvim_open_win()|.
+    border = M42.ui.float.border or "rounded",
+  }
+}
+
+mason_lsp.setup {
   -- A list of servers to automatically install if they're not already installed
-  ensure_installed = { "bashls", "cssls", "eslint", "graphql", "html", "jsonls", "sumneko_lua", "tailwindcss", "tsserver", "vetur", "vuels" },
-  -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed
+  ensure_installed = { "bashls", "cssls", "eslint-lsp", "graphql-language-service-cli", "html-lsp", "json-lsp", "sumneko_lua", "tailwindcss", "tsserver",
+    "vetur-vls", "vue-language-server" },
+
+  -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
+  -- This setting has no relation with the `ensure_installed` setting.
+  -- Can either be:
+  --   - false: Servers are not automatically installed.
+  --   - true: All servers set up via lspconfig are automatically installed.
+  --   - { exclude: string[] }: All servers set up via lspconfig, except the ones provided in the list, are automatically installed.
+  --       Example: automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }
   automatic_installation = true,
 }
+
 local lspconfig = require("lspconfig")
 
 local handlers = {
