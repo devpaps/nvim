@@ -20,6 +20,9 @@ keymap("n", "<Leader>pm", "<CMD>lua require('harpoon.mark).add_file()<CR>", { no
 -- Format
 keymap("n", "<C-f>", "<CMD>lua vim.lsp.buf.format()<CR>", { noremap = true })
 
+-- Projects
+keymap("n", "<C-R>", "<CMD>Telescope projects<CR>", { noremap = true })
+
 -- Better window movment
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
@@ -52,8 +55,10 @@ keymap("n", "<Leader>pw", "<CMD>Telescope grep_string<CR><ESC>", { noremap = tru
 keymap("n", "<Leader>pf", "<CMD>lua require'telescope.builtin'.find_files{}<CR><ESC>", { noremap = true })
 
 -- Git
-keymap("n", "<Leader>gla", "<CMD>lua require('plugins.telescope').my_git_commits()<CR>", { noremap = true, silent = true })
-keymap("n", "<Leader>glc", "<CMD>lua require('plugins.telescope').my_git_bcommits()<CR>", { noremap = true, silent = true })
+keymap("n", "<Leader>gla", "<CMD>lua require('plugins.telescope').my_git_commits()<CR>",
+  { noremap = true, silent = true })
+keymap("n", "<Leader>glc", "<CMD>lua require('plugins.telescope').my_git_bcommits()<CR>",
+  { noremap = true, silent = true })
 
 -- Buffers
 keymap("n", "<Tab>", ":BufferNext<CR>", { noremap = true, silent = true })
