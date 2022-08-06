@@ -74,6 +74,9 @@ return packer.startup({ function(use)
   -- Sessionmanager
   use { 'Shatur/neovim-session-manager', config = "require('plugins.session-manager')" }
 
+  -- Projects
+  use { 'ahmedkhalf/project.nvim', config = "require('plugins.project')" }
+
   -- Rust
   use { 'simrat39/rust-tools.nvim', config = "require('plugins.rust')" }
 
@@ -81,7 +84,7 @@ return packer.startup({ function(use)
   use { 'j-hui/fidget.nvim', config = "require('plugins.fidget')" }
 
   -- Themes
-  use {'bluz71/vim-nightfly-guicolors'}
+  use { 'bluz71/vim-nightfly-guicolors' }
   -- use {'folke/tokyonight.nvim'}
   -- use {'EdenEast/nightfox.nvim'}
   -- use { 'gruvbox-community/gruvbox' }
