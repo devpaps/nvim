@@ -172,6 +172,7 @@ local mappings = {
   p = {
     name = "Project",
     g = { 'file' },
+    p =  { '<cmd>Telescope projects<CR>',                            'latest project'},
     f = { "<cmd>lua require'telescope.builtin'.find_files{}<CR>",    'find file' },
     w = { 'word' },
     l = { "<cmd>Telescope repo cached_list<CR>",                     'list git files' },
