@@ -1,4 +1,5 @@
 local actions    = require('telescope.actions')
+local project_nvim = require("project_nvim")
 local previewers = require('telescope.previewers')
 local builtin    = require('telescope.builtin')
 require('telescope').setup {
@@ -39,6 +40,7 @@ require('telescope').setup {
                 -- ["<C-q>"] = actions.send_selected_to_qflist,
                 ["<C-s>"] = actions.cycle_previewers_next,
                 ["<C-a>"] = actions.cycle_previewers_prev,
+                ["<C-d>"] = project_nvim.delete_project,
             },
             n = {
                 ["<C-s>"] = actions.cycle_previewers_next,
