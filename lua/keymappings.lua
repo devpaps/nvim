@@ -21,7 +21,7 @@ keymap("n", "<Leader>pm", "<CMD>lua require('harpoon.mark).add_file()<CR>", { no
 keymap("n", "<C-f>", "<CMD>lua vim.lsp.buf.format()<CR>", { noremap = true })
 
 -- Projects
-keymap("n", "<C-R>", "<CMD>Telescope projects<CR>", { noremap = true })
+keymap("n", "<Leader>pp", "<CMD>Telescope projects<CR>", { noremap = true })
 
 -- Better window movment
 keymap("n", "<C-h>", "<C-w>h", opts)

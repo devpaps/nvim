@@ -22,7 +22,7 @@ require("project_nvim").setup {
   exclude_dirs = {},
 
   -- Show hidden files in telescope
-  show_hidden = false,
+  show_hidden = true,
 
   -- When set to false, you will get a message when project.nvim changes your
   -- directory.
@@ -32,5 +32,3 @@ require("project_nvim").setup {
   -- telescope
   datapath = vim.fn.stdpath("data"),
 }
-
-require('telescope').load_extension('projects')

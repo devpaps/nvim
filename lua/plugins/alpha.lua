@@ -107,7 +107,7 @@ local function button(sc, txt, keybind, keybind_opts)
 end
 
 dashboard.section.buttons.val = {
-  button("<C-R>", icons.bookMark .. " " .. "Recent projects", "<cmd>Telescope projects <CR>", {}),
+  button("<SPC p p>", icons.bookMark .. " " .. "Recent projects", "<cmd>Telescope projects <CR>", {}),
   button("<C-P>", icons.fileNoBg .. " " .. "Find File", "<cmd>lua require('plugins.telescope').project_files()<CR>", {}),
   button("<S-P>", icons.t .. " " .. "Find Word", "<cmd>lua require('plugins.telescope.pickers.multi-rg')()<CR>", {}),
   button("SPC s h", icons.fileRecent .. " " .. "Recents", "<cmd>Telescope oldfiles hidden=true<CR>", {}),
