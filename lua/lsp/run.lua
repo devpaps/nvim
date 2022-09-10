@@ -75,6 +75,12 @@ if typescript_ok then
   })
 end
 
+lspconfig.cssls.setup {
+  capabilities = capabilities,
+  handlers = handlers,
+  on_attach = require('lsp.servers.cssls').on_attach,
+}
+
 lspconfig.tailwindcss.setup {
   capabilities = require('lsp.servers.tsserver').capabilities,
   filetypes = require('lsp.servers.tailwindcss').filetypes,
@@ -91,12 +97,18 @@ lspconfig.eslint.setup {
   settings = require('lsp.servers.eslint').settings,
 }
 
--- lspconfig.jsonls.setup {
---   capabilities = capabilities,
---   handlers = handlers,
---   on_attach = on_attach,
---   settings = require('lsp.servers.jsonls').settings,
--- }
+lspconfig.jsonls.setup {
+  capabilities = capabilities,
+  handlers = handlers,
+  on_attach = on_attach,
+  settings = require('lsp.servers.jsonls').settings,
+}
+
+lspconfig.omnisharp.setup {
+  handlers = handlers,
+  on_attach = on_attach,
+  settings = require('lsp.servers.omnisharp').settings,
+}
 
 lspconfig.sumneko_lua.setup {
   handlers = handlers,
@@ -112,7 +124,7 @@ lspconfig.vuels.setup {
 }
 
 
-for _, server in ipairs { "bashls", "cssls", "graphql", "html", "volar" } do
+for _, server in ipairs { "bashls", "cssls", "graphql", "html", "volar", "prismals" } do
   lspconfig[server].setup {
     on_attach = on_attach,
     capabilities = capabilities,
