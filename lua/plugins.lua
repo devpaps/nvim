@@ -84,16 +84,16 @@ return packer.startup({ function(use)
   use { 'j-hui/fidget.nvim', config = "require('plugins.fidget')" }
 
   -- Themes
-  use { 'bluz71/vim-nightfly-guicolors' }
-  -- use {'folke/tokyonight.nvim'}
+  -- use { 'bluz71/vim-nightfly-guicolors' }
+  use {'folke/tokyonight.nvim'}
   -- use {'EdenEast/nightfox.nvim'}
   -- use { 'gruvbox-community/gruvbox' }
   -- use 'rebelot/kanagawa.nvim'
 
-  use({
-    'glepnir/zephyr-nvim',
-    requires = { 'nvim-treesitter/nvim-treesitter', opt = true },
-  })
+  -- use({
+  --   'glepnir/zephyr-nvim',
+  --   requires = { 'nvim-treesitter/nvim-treesitter', opt = true },
+  -- })
 
   --CSS color
   use { 'norcalli/nvim-colorizer.lua', config = "require('plugins.colorizer')" }
@@ -137,7 +137,7 @@ return packer.startup({ function(use)
   use "rafamadriz/friendly-snippets"
 
   --Nvim Tree
-  use { 'kyazdani42/nvim-tree.lua', branch = "master", config = "require('plugins.tree')" }
+  use { 'kyazdani42/nvim-tree.lua', config = "require('plugins.tree')" }
   use { 'airblade/vim-rooter' }
 
   -- Telescope
