@@ -1,6 +1,6 @@
 -- local utils = require('utils')
 local nvim_tree_events = require('nvim-tree.events')
-local bufferline_state = require('bufferline.state')
+local bufferline_state = require('bufferline.api')
 
 local TREE_WIDTH = 40
 
@@ -13,6 +13,10 @@ local git_icons = {
   deleted = "",
   ignored = "◌"
 }
+
+local function add_whitespace(number)
+  return string.rep(" ", number)
+end
 
 local keymappings = {
   { key = {"<CR>", "o", "<2-LeftMouse>"}, action = "edit" },
@@ -123,7 +127,9 @@ require'nvim-tree'.setup {
   },
   filters = {
     dotfiles = false,
-    custom = {}
+    custom = {
+      "^.git$"
+    }
   },
   git = {
     enable = true,
@@ -154,7 +160,7 @@ require'nvim-tree'.setup {
   view = {
     -- width of the window, can be either a number (columns) or a string in `%`
     width = TREE_WIDTH,
-    hide_root_folder = false,
+    hide_root_folder = true,
     -- side of the tree, can be one of 'left' | 'right' | 'top' | 'bottom'
     side = 'left',
     mappings = {
@@ -176,7 +182,7 @@ require'nvim-tree'.setup {
 vim.api.nvim_set_keymap("n", "<C-e>", "<cmd>lua require'nvim-tree'.toggle()<CR>", { noremap = true, silent = true })
 
 nvim_tree_events.on_tree_open(function ()
-    bufferline_state.set_offset(TREE_WIDTH + 1, 13 .. 'File Explorer')
+    bufferline_state.set_offset(TREE_WIDTH + 1, add_whitespace(13) .. 'File Explorer')
 end)
 
 nvim_tree_events.on_tree_close(function ()
