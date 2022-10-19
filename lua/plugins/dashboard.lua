@@ -36,7 +36,7 @@ local plugins_count = vim.fn.len(vim.fn.globpath("~/.local/share/nvim/site/pack/
 dashboard.custom_center = {
   { icon = icons.hexCutOut,
     desc = 'Recent        ',
-    action = 'Telescope oldfiles hidden=true' },
+    action = 'Telescope oldfiles hidden=false' },
   { icon = icons.fileCopy,
     desc = 'Load Last Session        ',
     action = 'SessionLoad' },
