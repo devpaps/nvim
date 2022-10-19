@@ -121,8 +121,9 @@ end
 -- end
 -- LSP
 keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { silent = true })
-keymap("n", "gr", "<cmd>Telescope lsp_references({ includeDeclaration = false })<CR>", { silent = true })
-keymap("n", "gh", "<cmd>lua vim.diagnostic.open_float( {border = 'rounded', max_width = 150} )<CR>", { silent = true })
+-- keymap("n", "gr", "<cmd>Telescope lsp_references({ includeDeclaration = false })<CR>", { silent = true })
+keymap("n", "gr", "<cmd>lua vim.lsp.buf.references({ includeDeclaration = false })<CR>", { silent = true })
+keymap("n", "gh", "<cmd>lua vim.diagnostic.open_float( {border = 'rounded', max_width = 100} )<CR>", { silent = true })
 keymap("n", "<C-Space>", "<cmd>lua vim.lsp.buf.code_action()<CR>", { silent = true })
 keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { silent = true })
 keymap("v", "<leader>ca", "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<CR>", { silent = true })
