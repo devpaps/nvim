@@ -85,7 +85,7 @@ return packer.startup({ function(use)
 
   -- Themes
   -- use { 'bluz71/vim-nightfly-guicolors' }
-  use {'folke/tokyonight.nvim'}
+  use { 'folke/tokyonight.nvim' }
   -- use {'EdenEast/nightfox.nvim'}
   -- use { 'gruvbox-community/gruvbox' }
   -- use 'rebelot/kanagawa.nvim'
@@ -95,6 +95,8 @@ return packer.startup({ function(use)
   --   requires = { 'nvim-treesitter/nvim-treesitter', opt = true },
   -- })
 
+  -- use({
+  use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim", config = "require('plugins.todo-comments')" }
   --CSS color
   use { 'norcalli/nvim-colorizer.lua', config = "require('plugins.colorizer')" }
 
