@@ -4,6 +4,10 @@ local previewers = require('telescope.previewers')
 local builtin    = require('telescope.builtin')
 require('telescope').setup {
     defaults = {
+    file_ignore_patterns = {
+      'node_modules',
+      'package-lock.json',
+    },
         vimgrep_arguments = {
           'rg',
           '--color=never',

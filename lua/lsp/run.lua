@@ -28,7 +28,7 @@ mason.setup {
 
 mason_lsp.setup {
   -- A list of servers to automatically install if they're not already installed
-  ensure_installed = { "bashls", "cssls", "eslint", "graphql", "html", "jsonls", "sumneko_lua", "tailwindcss", "tsserver",
+  ensure_installed = { "bashls", "cssls", "eslint", "graphql", "html", "jsonls", "lua_ls", "tailwindcss", "tsserver",
     "vuels", "volar", "prismals" },
 
   -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
@@ -110,10 +110,10 @@ lspconfig.omnisharp.setup {
   settings = require('lsp.servers.omnisharp').settings,
 }
 
-lspconfig.sumneko_lua.setup {
+lspconfig.lua_ls.setup {
   handlers = handlers,
   on_attach = on_attach,
-  settings = require('lsp.servers.sumneko_lua').settings,
+  settings = require('lsp.servers.lua_ls').settings,
 }
 
 lspconfig.vuels.setup {

@@ -33,6 +33,33 @@ capabilities.textDocument.codeAction = {
   },
 }
 
+local settings = {
+  typescript = {
+    inlayHints = {
+      includeInlayParameterNameHints = 'all',
+      includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+      includeInlayFunctionParameterTypeHints = true,
+      includeInlayVariableTypeHints = false,
+      includeInlayPropertyDeclarationTypeHints = true,
+      includeInlayFunctionLikeReturnTypeHints = false,
+      includeInlayEnumMemberValueHints = true,
+      disableSuggestions = true,
+    }
+  },
+  javascript = {
+    inlayHints = {
+      includeInlayParameterNameHints = 'all',
+      includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+      includeInlayFunctionParameterTypeHints = true,
+      includeInlayVariableTypeHints = false,
+      includeInlayPropertyDeclarationTypeHints = true,
+      includeInlayFunctionLikeReturnTypeHints = false,
+      includeInlayEnumMemberValueHints = true,
+      disableSuggestions = true,
+    }
+  }
+}
+
 local on_attach = function(client, bufnr)
   client.server_capabilities.documentFormattingProvider = true
   client.server_capabilities.documentRangeFormattingProvider = true
@@ -43,5 +70,6 @@ end
 
 M.capabilities = capabilities;
 M.on_attach = on_attach;
+M.settings = settings;
 
 return M
