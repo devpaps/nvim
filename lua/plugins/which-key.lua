@@ -89,7 +89,7 @@ local mappings = {
 
   ["/"] = {
     name = "Dashboard",
-    ["/"] = { '<cmd>Dashboard<CR>',                      'open dashboard' },
+    ["/"] = { '<cmd>Alpha<CR>',                      'open dashboard' },
     ["c"] = { ':e $MYVIMRC<CR>',                         'open init' },
     ["s"] = { '<cmd>PackerSync<CR>',                     'packer sync' },
     ["u"] = { '<cmd>PackerUpdate<CR>',                   'packer update' },
@@ -172,11 +172,13 @@ local mappings = {
   p = {
     name = "Project",
     g = { 'file' },
+    p =  { '<cmd>Telescope projects<CR>',                            'latest project'},
     f = { "<cmd>lua require'telescope.builtin'.find_files{}<CR>",    'find file' },
     w = { 'word' },
     l = { "<cmd>Telescope repo cached_list<CR>",                     'list git files' },
     t = { "<cmd>TodoTrouble<CR>",                                    'todo' },
-    s = { "<cmd>SessionSave<CR>",                                    'save session' },
+    s = { "<cmd>SessionManager save_current_session<CR>",            'save session' },
+    c = { "<cmd>SessionManager load_last_session<CR>",               'load session' },
     h = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>",  'Harpoon File Navigation' },
     m = { "<cmd>lua require('harpoon.mark').add_file()<CR>",         'Harpoon Mark File' },
   },

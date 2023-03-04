@@ -1,6 +1,6 @@
 local M = {}
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.colorProvider = { dynamicRegistration = false }
 
@@ -8,7 +8,7 @@ capabilities.textDocument.colorProvider = { dynamicRegistration = false }
 
 local on_attach = function (client, bufnr)
   if client.server_capabilities.colorProvider then
-    require"lsp/documentcolors".buf_attach(bufnr)
+    require"lsp/utils/documentcolors".buf_attach(bufnr)
   end
 end
 

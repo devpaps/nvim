@@ -1,36 +1,52 @@
--- Automatically install servers
+-- Setup installer & lsp configs
+-- Setup installer & lsp configs
+local typescript_ok, typescript = pcall(require, 'typescript')
+-- local lsp_installer_ok, lsp_installer = pcall(require, 'nvim-lsp-installer')
 
-local status_ok, lsp_installer_servers = pcall(require, 'nvim-lsp-installer.servers')
-if status_ok then
-  for _, server in ipairs {
-    "bashls",
-    "cssls",
-    "eslint",
-    "graphql",
-    "html",
-    "sumneko_lua",
-    "tailwindcss",
-    "tsserver",
-    "vetur",
-    "vuels",
-  } do
-    local ok, server_name = lsp_installer_servers.get_server(server)
-    if ok then
-      if not server_name:is_installed() then
-        server_name:install()
-      end
-    end
-  end
+-- if not lsp_installer_ok then
+--   return
+-- end
+
+-- lsp_installer.setup {
+--   -- A list of servers to automatically install if they're not already installed
+--   ensure_installed = { "bashls", "cssls", "eslint", "graphql", "html", "jsonls", "sumneko_lua", "tailwindcss", "tsserver", "vetur", "vuels" },
+--   -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed
+--   automatic_installation = true,
+-- }
+local mason_ok, mason = pcall(require, 'mason')
+local mason_lsp_ok, mason_lsp = pcall(require, 'mason-lspconfig')
+
+if not mason_ok or not mason_lsp_ok then
+  return
 end
 
--- Setup installer & lsp configs
+mason.setup {
+  ui = {
+    -- The border to use for the UI window. Accepts same border values as |nvim_open_win()|.
+    border = M42.ui.float.border or "rounded",
+  }
+}
 
-require("nvim-lsp-installer").setup {}
+mason_lsp.setup {
+  -- A list of servers to automatically install if they're not already installed
+  ensure_installed = { "bashls", "cssls", "eslint", "graphql", "html", "jsonls", "lua_ls", "tailwindcss", "tsserver",
+    "vuels", "volar", "prismals" },
+
+  -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
+  -- This setting has no relation with the `ensure_installed` setting.
+  -- Can either be:
+  --   - false: Servers are not automatically installed.
+  --   - true: All servers set up via lspconfig are automatically installed.
+  --   - { exclude: string[] }: All servers set up via lspconfig, except the ones provided in the list, are automatically installed.
+  --       Example: automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }
+  automatic_installation = true,
+}
+
 local lspconfig = require("lspconfig")
 
 local handlers = {
-  ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = M42.ui.float.border }),
-  ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = M42.ui.float.border }),
+      ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = M42.ui.float.border }),
+      ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = M42.ui.float.border }),
 }
 
 local function on_attach(client, bufnr)
@@ -40,19 +56,30 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 local cmp_nvim_lsp_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
 if cmp_nvim_lsp_ok then
-  capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
 end
 
-lspconfig.sumneko_lua.setup {
-  handlers = handlers,
-  on_attach = on_attach,
-  settings = require('lsp.servers.sumneko_lua').settings,
-}
+-- Order matters
 
-lspconfig.tsserver.setup {
-  capabilities = require('lsp.servers.tsserver').capabilities,
+-- It enables tsserver automatically so no need to call lspconfig.tsserver.setup
+if typescript_ok then
+  typescript.setup({
+    disable_commands = false,   -- prevent the plugin from creating Vim commands
+    disable_formatting = false, -- disable tsserver's formatting capabilities
+    debug = false,              -- enable debug logging for commands
+    -- LSP Config options
+    server = {
+      capabilities = require('lsp.servers.tsserver').capabilities,
+      handlers = handlers,
+      on_attach = require('lsp.servers.tsserver').on_attach,
+    }
+  })
+end
+
+lspconfig.cssls.setup {
+  capabilities = capabilities,
   handlers = handlers,
-  on_attach = require('lsp.servers.tsserver').on_attach,
+  on_attach = require('lsp.servers.cssls').on_attach,
 }
 
 lspconfig.tailwindcss.setup {
@@ -64,13 +91,6 @@ lspconfig.tailwindcss.setup {
   settings = require('lsp.servers.tailwindcss').settings,
 }
 
-lspconfig.vuels.setup {
-  filetypes = require('lsp.servers.vuels').filetypes,
-  handlers = handlers,
-  init_options = require('lsp.servers.vuels').init_options,
-  on_attach = on_attach,
-}
-
 lspconfig.eslint.setup {
   capabilities = capabilities,
   handlers = handlers,
@@ -78,15 +98,34 @@ lspconfig.eslint.setup {
   settings = require('lsp.servers.eslint').settings,
 }
 
+lspconfig.jsonls.setup {
+  capabilities = capabilities,
+  handlers = handlers,
+  on_attach = on_attach,
+  settings = require('lsp.servers.jsonls').settings,
+}
 
--- lspconfig.jsonls.setup {
---   capabilities = capabilities,
---   handlers = handlers,
---   on_attach = on_attach,
---   settings = require('lsp.servers.jsonls').settings,
--- }
+lspconfig.omnisharp.setup {
+  handlers = handlers,
+  on_attach = on_attach,
+  settings = require('lsp.servers.omnisharp').settings,
+}
 
-for _, server in ipairs { "bashls", "cssls", "graphql", "html" } do
+lspconfig.lua_ls.setup {
+  handlers = handlers,
+  on_attach = on_attach,
+  settings = require('lsp.servers.lua_ls').settings,
+}
+
+lspconfig.vuels.setup {
+  filetypes = require('lsp.servers.vuels').filetypes,
+  handlers = handlers,
+  init_options = require('lsp.servers.vuels').init_options,
+  on_attach = on_attach,
+}
+
+
+for _, server in ipairs { "bashls", "cssls", "graphql", "html", "volar", "prismals" } do
   lspconfig[server].setup {
     on_attach = on_attach,
     capabilities = capabilities,
