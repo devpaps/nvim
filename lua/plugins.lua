@@ -125,7 +125,7 @@ return packer.startup({ function(use)
   }
 
   --LSP
-  -- use { "jose-elias-alvarez/null-ls.nvim", config = "require('lsp.null-ls')" } -- for formatters and linters
+  use { "jose-elias-alvarez/null-ls.nvim", config = "require('lsp.null-ls')" } -- for formatters and linters
   -- use { 'jose-elias-alvarez/nvim-lsp-ts-utils', after = { 'nvim-treesitter' } } -- for typescript
 
   -- autocomplete
