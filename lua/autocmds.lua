@@ -9,4 +9,4 @@ vim.api.nvim_create_autocmd("BufRead", { pattern = "*/node_modules/*", command =
 vim.api.nvim_create_autocmd("BufNewFile", { pattern = "*/node_modules/*", command = "lua vim.diagnostic.disable(0)", group = 'LspNodeModules' })
 
 -- vim.api.nvim_create_augroup("FormatOnSave", { clear = true })
--- vim.api.nvim_create_autocmd("BufWritePost", { command = "lua vim.lsp.buf.formatting()", group = 'FormatOnSave' })
+-- vim.api.nvim_create_autocmd("BufWritePost", { command = "lua vim.lsp.buf.format()", group = 'FormatOnSave' })

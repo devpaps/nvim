@@ -63,6 +63,11 @@ return packer.startup({ function(use)
   use { 'github/copilot.vim' }
   use 'xiyaowong/nvim-transparent'
   use 'wakatime/vim-wakatime'
+  use({
+    "jose-elias-alvarez/nvim-lsp-ts-utils",
+    requires = { "nvim-lua/plenary.nvim" },
+  })
+  use { 'jose-elias-alvarez/typescript.nvim' }
 
   -- Context treesitter
   use 'nvim-treesitter/nvim-treesitter'
@@ -70,7 +75,7 @@ return packer.startup({ function(use)
 
   -- Rust
   use { 'simrat39/rust-tools.nvim', config = "require('plugins.rust')" }
-
+  
   -- Show loading LSP status
   use { 'j-hui/fidget.nvim', config = "require('plugins.fidget')" }
 
@@ -82,6 +87,8 @@ return packer.startup({ function(use)
   -- use { "ellisonleao/gruvbox.nvim", config = "require('plugins.gruvbox')" }
   -- use 'shaunsingh/nord.nvim'
 
+  -- use({
+  use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim", config = "require('plugins.todo-comments')" }
   --CSS color
   use { 'norcalli/nvim-colorizer.lua', config = "require('plugins.colorizer')" }
 

@@ -79,7 +79,7 @@ require'nvim-tree'.setup {
   respect_buf_cwd = true,
   -- show lsp diagnostics in the signcolumn
   diagnostics         = {
-    enable = true,
+    enable = false,
     icons  = {
       hint    = "",
       info    = "",

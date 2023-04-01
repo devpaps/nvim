@@ -384,6 +384,22 @@ time([[Config for lualine.nvim]], false)
 time([[Config for nvim-toggleterm.lua]], true)
 require('plugins.toggleterm')
 time([[Config for nvim-toggleterm.lua]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+require('plugins.lualine')
+time([[Config for lualine.nvim]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
+time([[Config for nvim-autopairs]], false)
+-- Config for: rust-tools.nvim
+time([[Config for rust-tools.nvim]], true)
+require('plugins.rust')
+time([[Config for rust-tools.nvim]], false)
+-- Config for: indent-blankline.nvim
+time([[Config for indent-blankline.nvim]], true)
+require('plugins.indent')
+time([[Config for indent-blankline.nvim]], false)
 -- Config for: project.nvim
 time([[Config for project.nvim]], true)
 require('plugins.project')

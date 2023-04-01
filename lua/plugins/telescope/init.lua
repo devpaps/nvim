@@ -1,8 +1,13 @@
 local actions    = require('telescope.actions')
+local project_nvim = require("project_nvim")
 local previewers = require('telescope.previewers')
 local builtin    = require('telescope.builtin')
 require('telescope').setup {
     defaults = {
+    file_ignore_patterns = {
+      'node_modules',
+      'package-lock.json',
+    },
         vimgrep_arguments = {
           'rg',
           '--color=never',
@@ -36,9 +41,10 @@ require('telescope').setup {
                 ["<C-x>"] = false,
                 ["<C-j>"] = actions.move_selection_next,
                 ["<C-k>"] = actions.move_selection_previous,
-                ["<C-q>"] = actions.send_selected_to_qflist,
+                -- ["<C-q>"] = actions.send_selected_to_qflist,
                 ["<C-s>"] = actions.cycle_previewers_next,
                 ["<C-a>"] = actions.cycle_previewers_prev,
+                ["<C-d>"] = project_nvim.delete_project,
             },
             n = {
                 ["<C-s>"] = actions.cycle_previewers_next,
