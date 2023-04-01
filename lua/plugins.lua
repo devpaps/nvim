@@ -43,16 +43,14 @@ return packer.startup({ function(use)
   use 'wbthomason/packer.nvim'
   use 'lewis6991/impatient.nvim'
   use "nathom/filetype.nvim" -- Faster statup
-  -- use { 'glepnir/dashboard-nvim', config = "require('plugins.dashboard')" }
-  use { 'goolord/alpha-nvim', config = "require('plugins.alpha')" }
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = "require('plugins.treesitter')" }
   use 'neovim/nvim-lspconfig'
-  -- use { 'williamboman/nvim-lsp-installer', event = 'BufEnter', after = 'cmp-nvim-lsp' }
+  use { 'goolord/alpha-nvim', config = "require('plugins.alpha')" }
   use { 'williamboman/mason.nvim' }
   use { 'williamboman/mason-lspconfig.nvim' }
   use { 'romgrk/barbar.nvim', config = "require('plugins.barbar')" }
-  use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
-  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
+  use "nvim-lua/popup.nvim"                                              -- An implementation of the Popup API from vim in Neovim
+  use "nvim-lua/plenary.nvim"                                            -- Useful lua functions used ny lots of plugins
   use { "numToStr/Comment.nvim", config = "require('plugins.comment')" } -- Easily comment stuff
   use { 'akinsho/nvim-toggleterm.lua', config = "require('plugins.toggleterm')" }
   use "kyazdani42/nvim-web-devicons"
@@ -71,29 +69,23 @@ return packer.startup({ function(use)
   })
   use { 'jose-elias-alvarez/typescript.nvim' }
 
-  -- Sessionmanager
-  use { 'Shatur/neovim-session-manager', config = "require('plugins.session-manager')" }
-
-  -- Projects
-  use { 'ahmedkhalf/project.nvim', config = "require('plugins.project')" }
+  -- Context treesitter
+  use 'nvim-treesitter/nvim-treesitter'
+  use 'nvim-treesitter/nvim-treesitter-context'
 
   -- Rust
   use { 'simrat39/rust-tools.nvim', config = "require('plugins.rust')" }
-
+  
   -- Show loading LSP status
   use { 'j-hui/fidget.nvim', config = "require('plugins.fidget')" }
 
   -- Themes
-  -- use { 'bluz71/vim-nightfly-guicolors' }
-  use { 'folke/tokyonight.nvim' }
-  -- use {'EdenEast/nightfox.nvim'}
+  -- use {'bluz71/vim-nightfly-guicolors'}
+  -- use {'folke/tokyonight.nvim'}
+  use { 'EdenEast/nightfox.nvim' }
   -- use { 'gruvbox-community/gruvbox' }
-  -- use 'rebelot/kanagawa.nvim'
-
-  -- use({
-  --   'glepnir/zephyr-nvim',
-  --   requires = { 'nvim-treesitter/nvim-treesitter', opt = true },
-  -- })
+  -- use { "ellisonleao/gruvbox.nvim", config = "require('plugins.gruvbox')" }
+  -- use 'shaunsingh/nord.nvim'
 
   -- use({
   use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim", config = "require('plugins.todo-comments')" }
@@ -102,6 +94,9 @@ return packer.startup({ function(use)
 
   --Markdown preview, Glow
   use { "ellisonleao/glow.nvim" }
+
+  -- Projects
+  use { 'ahmedkhalf/project.nvim', config = "require('plugins.project')" }
 
   -- Harpoon
   -- use {'ThePrimeagen/harpoon'}
@@ -125,13 +120,13 @@ return packer.startup({ function(use)
   }
 
   --LSP
-  use { "jose-elias-alvarez/null-ls.nvim", config = "require('lsp.null-ls')" } -- for formatters and linters
-  -- use { 'jose-elias-alvarez/nvim-lsp-ts-utils', after = { 'nvim-treesitter' } } -- for typescript
+  use { "jose-elias-alvarez/null-ls.nvim", config = "require('lsp.null-ls')" }  -- for formatters and linters
+  use { 'jose-elias-alvarez/nvim-lsp-ts-utils', after = { 'nvim-treesitter' } } -- for typescript
 
   -- autocomplete
   use { 'hrsh7th/nvim-cmp', config = "require('plugins.nvim-cmp')" }
   use { 'onsails/lspkind-nvim' }
-  use 'L3MON4D3/LuaSnip'
+  use { 'L3MON4D3/LuaSnip', dependencies = "rafamadriz/friendly-snippets" }
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-buffer'
@@ -139,8 +134,12 @@ return packer.startup({ function(use)
   use "rafamadriz/friendly-snippets"
 
   --Nvim Tree
-  use { 'kyazdani42/nvim-tree.lua', config = "require('plugins.tree')" }
-  use { 'airblade/vim-rooter' }
+  use { 'kyazdani42/nvim-tree.lua', branch = "master", config = "require('plugins.tree')" }
+  use { 'airblade/vim-rooter',
+    config = function()
+      vim.g.rooter_patterns = M42.plugins.rooter.patterns
+    end
+  }
 
   -- Telescope
   use { 'nvim-telescope/telescope.nvim',
@@ -168,6 +167,5 @@ return packer.startup({ function(use)
   --     require("neoclip").setup()
   --   end,
   -- }
-
 end,
 })

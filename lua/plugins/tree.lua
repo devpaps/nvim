@@ -94,7 +94,7 @@ require'nvim-tree'.setup {
     highlight_opened_files = "none",
     root_folder_modifier = ":~",
     indent_markers = {
-      enable = false,
+      enable = true,
       icons = {
         corner = "└ ",
         edge = "│ ",
@@ -179,7 +179,7 @@ require'nvim-tree'.setup {
   }
 }
 
-vim.api.nvim_set_keymap("n", "<C-e>", "<cmd>lua require'nvim-tree'.toggle()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-e>", "<cmd>lua require'nvim-tree.api'.tree.toggle()<CR>", { noremap = true, silent = true })
 
 nvim_tree_events.on_tree_open(function ()
     bufferline_state.set_offset(TREE_WIDTH + 1, add_whitespace(13) .. 'File Explorer')
