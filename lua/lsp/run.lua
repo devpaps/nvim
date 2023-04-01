@@ -1,18 +1,5 @@
 -- Setup installer & lsp configs
--- Setup installer & lsp configs
 local typescript_ok, typescript = pcall(require, 'typescript')
--- local lsp_installer_ok, lsp_installer = pcall(require, 'nvim-lsp-installer')
-
--- if not lsp_installer_ok then
---   return
--- end
-
--- lsp_installer.setup {
---   -- A list of servers to automatically install if they're not already installed
---   ensure_installed = { "bashls", "cssls", "eslint", "graphql", "html", "jsonls", "sumneko_lua", "tailwindcss", "tsserver", "vetur", "vuels" },
---   -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed
---   automatic_installation = true,
--- }
 local mason_ok, mason = pcall(require, 'mason')
 local mason_lsp_ok, mason_lsp = pcall(require, 'mason-lspconfig')
 
@@ -45,8 +32,8 @@ mason_lsp.setup {
 local lspconfig = require("lspconfig")
 
 local handlers = {
-      ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = M42.ui.float.border }),
-      ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = M42.ui.float.border }),
+  ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = M42.ui.float.border }),
+  ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = M42.ui.float.border }),
 }
 
 local function on_attach(client, bufnr)
@@ -62,18 +49,13 @@ end
 -- Order matters
 
 -- It enables tsserver automatically so no need to call lspconfig.tsserver.setup
-if typescript_ok then
-  typescript.setup({
-    disable_commands = false,   -- prevent the plugin from creating Vim commands
-    disable_formatting = false, -- disable tsserver's formatting capabilities
-    debug = false,              -- enable debug logging for commands
-    -- LSP Config options
-    server = {
-      capabilities = require('lsp.servers.tsserver').capabilities,
-      handlers = handlers,
-      on_attach = require('lsp.servers.tsserver').on_attach,
-    }
-  })
+if not typescript_ok then
+  lspconfig.tsserver.setup {
+    capabilities = require('lsp.servers.tsserver').capabilities,
+    handlers = handlers,
+    settings = require('lsp.servers.tsserver').settings,
+    on_attach = require('lsp.servers.tsserver').on_attach,
+  }
 end
 
 lspconfig.cssls.setup {
