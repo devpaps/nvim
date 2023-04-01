@@ -15,7 +15,7 @@ null_ls.setup {
   sources = {
     formatting.prettier_d_slim.with {
       extra_filetypes = { "toml", "solidity" },
-      extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
+      extra_args = { "--no-semi" },
     },
     -- diagnostics.eslint_d.with {
     --   extra_filetypes = { "sol" },
