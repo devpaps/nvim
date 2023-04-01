@@ -161,11 +161,6 @@ _G.packer_plugins = {
     path = "/home/devpaps/.local/share/nvim/site/pack/packer/start/glow.nvim",
     url = "https://github.com/ellisonleao/glow.nvim"
   },
-  gruvbox = {
-    loaded = true,
-    path = "/home/devpaps/.local/share/nvim/site/pack/packer/start/gruvbox",
-    url = "https://github.com/gruvbox-community/gruvbox"
-  },
   ["impatient.nvim"] = {
     loaded = true,
     path = "/home/devpaps/.local/share/nvim/site/pack/packer/start/impatient.nvim",
@@ -202,6 +197,17 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/devpaps/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
+  },
+  ["nightfox.nvim"] = {
+    loaded = true,
+    path = "/home/devpaps/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
+    url = "https://github.com/EdenEast/nightfox.nvim"
+  },
+  ["null-ls.nvim"] = {
+    config = { "require('lsp.null-ls')" },
+    loaded = true,
+    path = "/home/devpaps/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
+    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
   },
   ["nvim-autopairs"] = {
     config = { "\27LJ\2\n<\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0" },
@@ -257,6 +263,11 @@ _G.packer_plugins = {
     only_config = true,
     path = "/home/devpaps/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
+  },
+  ["nvim-treesitter-context"] = {
+    loaded = true,
+    path = "/home/devpaps/.local/share/nvim/site/pack/packer/start/nvim-treesitter-context",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter-context"
   },
   ["nvim-ts-context-commentstring"] = {
     load_after = {},
@@ -320,7 +331,7 @@ _G.packer_plugins = {
     url = "https://github.com/folke/trouble.nvim"
   },
   ["vim-rooter"] = {
-    config = { "\27LJ\2\nE\0\0\2\0\5\0\a6\0\0\0009\0\1\0006\1\3\0009\1\4\0019\1\2\1=\1\2\0K\0\1\0\fplugins\bM42\20rooter_patterns\6g\bvim\0" },
+    config = { "\27LJ\2\nY\0\0\2\0\a\0\b6\0\0\0009\0\1\0006\1\3\0009\1\4\0019\1\5\0019\1\6\1=\1\2\0K\0\1\0\rpatterns\vrooter\fplugins\bM42\20rooter_patterns\6g\bvim\0" },
     loaded = true,
     path = "/home/devpaps/.local/share/nvim/site/pack/packer/start/vim-rooter",
     url = "https://github.com/airblade/vim-rooter"
@@ -341,74 +352,78 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: project.nvim
-time([[Config for project.nvim]], true)
-require('plugins.project')
-time([[Config for project.nvim]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-require('plugins.lualine')
-time([[Config for lualine.nvim]], false)
--- Config for: alpha-nvim
-time([[Config for alpha-nvim]], true)
-require('plugins.alpha')
-time([[Config for alpha-nvim]], false)
--- Config for: indent-blankline.nvim
-time([[Config for indent-blankline.nvim]], true)
-require('plugins.indent')
-time([[Config for indent-blankline.nvim]], false)
 -- Config for: Comment.nvim
 time([[Config for Comment.nvim]], true)
 require('plugins.comment')
 time([[Config for Comment.nvim]], false)
--- Config for: nvim-tree.lua
-time([[Config for nvim-tree.lua]], true)
-require('plugins.tree')
-time([[Config for nvim-tree.lua]], false)
--- Config for: trouble.nvim
-time([[Config for trouble.nvim]], true)
-require('plugins.trouble')
-time([[Config for trouble.nvim]], false)
--- Config for: barbar.nvim
-time([[Config for barbar.nvim]], true)
-require('plugins.barbar')
-time([[Config for barbar.nvim]], false)
--- Config for: nvim-toggleterm.lua
-time([[Config for nvim-toggleterm.lua]], true)
-require('plugins.toggleterm')
-time([[Config for nvim-toggleterm.lua]], false)
--- Config for: nvim-colorizer.lua
-time([[Config for nvim-colorizer.lua]], true)
-require('plugins.colorizer')
-time([[Config for nvim-colorizer.lua]], false)
--- Config for: fidget.nvim
-time([[Config for fidget.nvim]], true)
-require('plugins.fidget')
-time([[Config for fidget.nvim]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-require('plugins.nvim-cmp')
-time([[Config for nvim-cmp]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require('plugins.treesitter')
-time([[Config for nvim-treesitter]], false)
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
-try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
-time([[Config for nvim-autopairs]], false)
--- Config for: rust-tools.nvim
-time([[Config for rust-tools.nvim]], true)
-require('plugins.rust')
-time([[Config for rust-tools.nvim]], false)
 -- Config for: telescope.nvim
 time([[Config for telescope.nvim]], true)
 require('plugins.telescope/init')
 time([[Config for telescope.nvim]], false)
+-- Config for: barbar.nvim
+time([[Config for barbar.nvim]], true)
+require('plugins.barbar')
+time([[Config for barbar.nvim]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+require('plugins.tree')
+time([[Config for nvim-tree.lua]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require('plugins.treesitter')
+time([[Config for nvim-treesitter]], false)
+-- Config for: rust-tools.nvim
+time([[Config for rust-tools.nvim]], true)
+require('plugins.rust')
+time([[Config for rust-tools.nvim]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+require('plugins.lualine')
+time([[Config for lualine.nvim]], false)
+-- Config for: nvim-toggleterm.lua
+time([[Config for nvim-toggleterm.lua]], true)
+require('plugins.toggleterm')
+time([[Config for nvim-toggleterm.lua]], false)
+-- Config for: project.nvim
+time([[Config for project.nvim]], true)
+require('plugins.project')
+time([[Config for project.nvim]], false)
+-- Config for: alpha-nvim
+time([[Config for alpha-nvim]], true)
+require('plugins.alpha')
+time([[Config for alpha-nvim]], false)
+-- Config for: trouble.nvim
+time([[Config for trouble.nvim]], true)
+require('plugins.trouble')
+time([[Config for trouble.nvim]], false)
+-- Config for: nvim-colorizer.lua
+time([[Config for nvim-colorizer.lua]], true)
+require('plugins.colorizer')
+time([[Config for nvim-colorizer.lua]], false)
+-- Config for: indent-blankline.nvim
+time([[Config for indent-blankline.nvim]], true)
+require('plugins.indent')
+time([[Config for indent-blankline.nvim]], false)
+-- Config for: null-ls.nvim
+time([[Config for null-ls.nvim]], true)
+require('lsp.null-ls')
+time([[Config for null-ls.nvim]], false)
 -- Config for: vim-rooter
 time([[Config for vim-rooter]], true)
-try_loadstring("\27LJ\2\nE\0\0\2\0\5\0\a6\0\0\0009\0\1\0006\1\3\0009\1\4\0019\1\2\1=\1\2\0K\0\1\0\fplugins\bM42\20rooter_patterns\6g\bvim\0", "config", "vim-rooter")
+try_loadstring("\27LJ\2\nY\0\0\2\0\a\0\b6\0\0\0009\0\1\0006\1\3\0009\1\4\0019\1\5\0019\1\6\1=\1\2\0K\0\1\0\rpatterns\vrooter\fplugins\bM42\20rooter_patterns\6g\bvim\0", "config", "vim-rooter")
 time([[Config for vim-rooter]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require('plugins.nvim-cmp')
+time([[Config for nvim-cmp]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
+time([[Config for nvim-autopairs]], false)
+-- Config for: fidget.nvim
+time([[Config for fidget.nvim]], true)
+require('plugins.fidget')
+time([[Config for fidget.nvim]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
 vim.cmd [[ packadd nvim-lsp-ts-utils ]]
@@ -418,8 +433,8 @@ vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au BufRead * ++once lua require("packer.load")({'gitsigns.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
 vim.cmd [[au BufWinEnter * ++once lua require("packer.load")({'which-key.nvim'}, { event = "BufWinEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au BufRead * ++once lua require("packer.load")({'gitsigns.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 
