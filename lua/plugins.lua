@@ -43,10 +43,8 @@ return packer.startup({ function(use)
   use 'wbthomason/packer.nvim'
   use 'lewis6991/impatient.nvim'
   use "nathom/filetype.nvim" -- Faster statup
-  -- use {'glepnir/dashboard-nvim', config = "require('plugins.dashboard')"}
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = "require('plugins.treesitter')" }
   use 'neovim/nvim-lspconfig'
-  -- use {'williamboman/nvim-lsp-installer', event = 'BufEnter', after = 'cmp-nvim-lsp'}
   use { 'goolord/alpha-nvim', config = "require('plugins.alpha')" }
   use { 'williamboman/mason.nvim' }
   use { 'williamboman/mason-lspconfig.nvim' }
@@ -66,6 +64,10 @@ return packer.startup({ function(use)
   use 'xiyaowong/nvim-transparent'
   use 'wakatime/vim-wakatime'
 
+  -- Context treesitter
+  use 'nvim-treesitter/nvim-treesitter'
+  use 'nvim-treesitter/nvim-treesitter-context'
+
   -- Rust
   use { 'simrat39/rust-tools.nvim', config = "require('plugins.rust')" }
 
@@ -75,8 +77,10 @@ return packer.startup({ function(use)
   -- Themes
   -- use {'bluz71/vim-nightfly-guicolors'}
   -- use {'folke/tokyonight.nvim'}
-  -- use {'EdenEast/nightfox.nvim'}
-  use { 'gruvbox-community/gruvbox' }
+  use { 'EdenEast/nightfox.nvim' }
+  -- use { 'gruvbox-community/gruvbox' }
+  -- use { "ellisonleao/gruvbox.nvim", config = "require('plugins.gruvbox')" }
+  -- use 'shaunsingh/nord.nvim'
 
   --CSS color
   use { 'norcalli/nvim-colorizer.lua', config = "require('plugins.colorizer')" }
@@ -109,7 +113,7 @@ return packer.startup({ function(use)
   }
 
   --LSP
-  -- use { "jose-elias-alvarez/null-ls.nvim", config = "require('lsp.null-ls')" }  -- for formatters and linters
+  use { "jose-elias-alvarez/null-ls.nvim", config = "require('lsp.null-ls')" }  -- for formatters and linters
   use { 'jose-elias-alvarez/nvim-lsp-ts-utils', after = { 'nvim-treesitter' } } -- for typescript
 
   -- autocomplete
@@ -126,7 +130,7 @@ return packer.startup({ function(use)
   use { 'kyazdani42/nvim-tree.lua', branch = "master", config = "require('plugins.tree')" }
   use { 'airblade/vim-rooter',
     config = function()
-      vim.g.rooter_patterns = M42.plugins.rooter_patterns
+      vim.g.rooter_patterns = M42.plugins.rooter.patterns
     end
   }
 
