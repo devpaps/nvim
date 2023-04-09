@@ -70,12 +70,11 @@ return packer.startup({ function(use)
   use { 'jose-elias-alvarez/typescript.nvim' }
 
   -- Context treesitter
-  use 'nvim-treesitter/nvim-treesitter'
   use 'nvim-treesitter/nvim-treesitter-context'
 
   -- Rust
   use { 'simrat39/rust-tools.nvim', config = "require('plugins.rust')" }
-  
+
   -- Show loading LSP status
   use { 'j-hui/fidget.nvim', config = "require('plugins.fidget')" }
 
@@ -120,8 +119,7 @@ return packer.startup({ function(use)
   }
 
   --LSP
-  use { "jose-elias-alvarez/null-ls.nvim", config = "require('lsp.null-ls')" }  -- for formatters and linters
-  use { 'jose-elias-alvarez/nvim-lsp-ts-utils', after = { 'nvim-treesitter' } } -- for typescript
+  use { "jose-elias-alvarez/null-ls.nvim", config = "require('lsp.null-ls')" } -- for formatters and linters
 
   -- autocomplete
   use { 'hrsh7th/nvim-cmp', config = "require('plugins.nvim-cmp')" }
@@ -160,12 +158,5 @@ return packer.startup({ function(use)
     config = "require('plugins.gitsigns')",
     event = "BufRead"
   }
-
-  -- use {
-  --   "AckslD/nvim-neoclip.lua",
-  --   config = function()
-  --     require("neoclip").setup()
-  --   end,
-  -- }
 end,
 })
