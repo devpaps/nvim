@@ -49,7 +49,7 @@ end
 -- Order matters
 
 -- It enables tsserver automatically so no need to call lspconfig.tsserver.setup
-if not typescript_ok then
+if typescript_ok then
   lspconfig.tsserver.setup {
     capabilities = require('lsp.servers.tsserver').capabilities,
     handlers = handlers,
