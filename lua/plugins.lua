@@ -40,43 +40,41 @@ packer.init {
 
 return packer.startup({ function(use)
   -- Packer can manage it self
-  use 'wbthomason/packer.nvim'
-  use 'lewis6991/impatient.nvim'
-  use "nathom/filetype.nvim" -- Faster statup
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = "require('plugins.treesitter')" }
-  use 'neovim/nvim-lspconfig'
-  use { 'goolord/alpha-nvim', config = "require('plugins.alpha')" }
-  use { 'williamboman/mason.nvim' }
-  use { 'williamboman/mason-lspconfig.nvim' }
-  use { 'romgrk/barbar.nvim', config = "require('plugins.barbar')" }
-  use "nvim-lua/popup.nvim"                                              -- An implementation of the Popup API from vim in Neovim
-  use "nvim-lua/plenary.nvim"                                            -- Useful lua functions used ny lots of plugins
-  use { "numToStr/Comment.nvim", config = "require('plugins.comment')" } -- Easily comment stuff
-  use { 'akinsho/nvim-toggleterm.lua', config = "require('plugins.toggleterm')" }
-  use "kyazdani42/nvim-web-devicons"
-  use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
-  use { 'JoosepAlviste/nvim-ts-context-commentstring', after = 'nvim-treesitter' }
-  use { 'folke/which-key.nvim', config = "require('plugins.which-key')", event = "BufWinEnter" }
-  use { 'folke/trouble.nvim', config = "require('plugins.trouble')" }
-  use 'ggandor/lightspeed.nvim'
-  use { 'sindrets/diffview.nvim' }
-  use { 'github/copilot.vim' }
-  use 'xiyaowong/nvim-transparent'
-  use 'wakatime/vim-wakatime'
+  use 'wbthomason/packer.nvim'                                                                           -- A plugin manager for Neovim
+  use 'lewis6991/impatient.nvim'                                                                         -- Speeds up Neovim's startup time
+  use "nathom/filetype.nvim"                                                                             -- Faster filetype detection
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = "require('plugins.treesitter')" } -- Tree-sitter integration for Neovim, providing better syntax highlighting and code navigation
+  use 'neovim/nvim-lspconfig'                                                                            -- A collection of common configurations for Neovim's built-in Language Server Protocol (LSP) support
+  use { 'goolord/alpha-nvim', config = "require('plugins.alpha')" }                                      -- A start screen plugin for Neovim
+  use { 'williamboman/mason.nvim' }                                                                      -- Plugin for managing Neovim configurations in a modular way
+  use { 'williamboman/mason-lspconfig.nvim' }                                                            -- Plugin for managing Neovim configurations in a modular way
+  use { 'romgrk/barbar.nvim', config = "require('plugins.barbar')" }                                     -- A plugin for managing and navigating between multiple buffers
+  use "nvim-lua/popup.nvim"                                                                              -- An implementation of the Popup API from vim in Neovim
+  use "nvim-lua/plenary.nvim"                                                                            -- Useful lua functions used by lots of plugins
+  use { "numToStr/Comment.nvim", config = "require('plugins.comment')" }                                 -- Easily comment stuff
+  use { 'akinsho/nvim-toggleterm.lua', config = "require('plugins.toggleterm')" }                        -- A plugin for managing and toggling terminal windows in Neovim
+  use "kyazdani42/nvim-web-devicons"                                                                     -- Adds file type icons to various Neovim plugins
+  -- use "antoinemadec/FixCursorHold.nvim"                                                               -- This is needed to fix lsp doc highlight
+  use { 'JoosepAlviste/nvim-ts-context-commentstring', after = 'nvim-treesitter' }                       -- Sets the commentstring for treesitter based on the
+  use { 'folke/which-key.nvim', config = "require('plugins.which-key')", event = "BufWinEnter" }         -- Displays available key mappings when a key sequence is partially entered
+  use { 'folke/trouble.nvim', config = "require('plugins.trouble')" }                                    -- A diagnostics plugin for LSP
+  -- use 'ggandor/lightspeed.nvim'                                                                       -- A plugin for fast and precise cursor movements in Neovim
+  use { 'sindrets/diffview.nvim' }                                                                       -- A side-by-side diff viewer for Neovim
+  use { 'github/copilot.vim' }                                                                           -- GitHub Copilot integration for Neovim
+  use 'wakatime/vim-wakatime'                                                                            -- Integrates WakaTime for tracking coding metrics in Neovim
   use({
     "jose-elias-alvarez/nvim-lsp-ts-utils",
     requires = { "nvim-lua/plenary.nvim" },
-  })
-  use { 'jose-elias-alvarez/typescript.nvim' }
+  })                                           -- Utility functions and TypeScript support for Neovim's LSP
+  use { 'jose-elias-alvarez/typescript.nvim' } -- Utility functions and TypeScript support for Neovim's LSP
 
   -- Context treesitter
-  use 'nvim-treesitter/nvim-treesitter-context'
+  use 'nvim-treesitter/nvim-treesitter-context' -- Displays the current code context based on tree-sitter
 
   -- Rust
-  use { 'simrat39/rust-tools.nvim', config = "require('plugins.rust')" }
+  use { 'simrat39/rust-tools.nvim', config = "require('plugins.rust')" } -- Rust tooling for Neovim, including inlay hints, code actions, and more
 
-  -- Show loading LSP status
-  use { 'j-hui/fidget.nvim', config = "require('plugins.fidget')" }
+  use { 'j-hui/fidget.nvim', config = "require('plugins.fidget')" }      -- Displays LSP loading status
 
   -- Themes
   -- use {'bluz71/vim-nightfly-guicolors'}
@@ -86,12 +84,13 @@ return packer.startup({ function(use)
   -- use { "ellisonleao/gruvbox.nvim", config = "require('plugins.gruvbox')" }
   -- use 'shaunsingh/nord.nvim'
 
-  -- use({
+  -- A plugin for annotating and browsing TODO comments in your code
   use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim", config = "require('plugins.todo-comments')" }
-  --CSS color
+
+  -- A plugin for highlighting CSS color codes in Neovim
   use { 'norcalli/nvim-colorizer.lua', config = "require('plugins.colorizer')" }
 
-  --Markdown preview, Glow
+  -- A plugin for previewing markdown files using the glow CLI
   use { "ellisonleao/glow.nvim" }
 
   -- Projects
@@ -100,7 +99,7 @@ return packer.startup({ function(use)
   -- Harpoon
   -- use {'ThePrimeagen/harpoon'}
 
-  -- statusline
+  -- A lightweight status line for Neovim
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
