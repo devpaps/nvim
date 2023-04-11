@@ -21,15 +21,15 @@ end
 
 -- Setup
 local source_mapping = {
-  buffer      = M42.icons.buffer .. '[Buffer]',
-  calc        = M42.icons.calculator,
-  luasnip     = M42.icons.snippet .. '[LuaSnip]',
-  npm         = M42.icons.terminal .. '[Terminal]',
-  nvim_lsp    = M42.icons.paragraph .. '[LSP]',
-  nvim_lua    = M42.icons.bomb .. '[Lua]',
-  path        = M42.icons.folderOpen2,
-  treesitter  = M42.icons.tree,
-  zsh         = M42.icons.terminal .. '[Zsh]',
+  buffer     = M42.icons.buffer .. '[Buffer]',
+  calc       = M42.icons.calculator,
+  luasnip    = M42.icons.snippet .. '[LuaSnip]',
+  npm        = M42.icons.terminal .. '[Terminal]',
+  nvim_lsp   = M42.icons.paragraph .. '[LSP]',
+  nvim_lua   = M42.icons.bomb .. '[Lua]',
+  path       = M42.icons.folderOpen2,
+  treesitter = M42.icons.tree,
+  zsh        = M42.icons.terminal .. '[Zsh]',
 }
 
 local buffer_option = {
@@ -108,12 +108,12 @@ cmp.setup {
   -- You should specify your *installed* sources.
   sources = {
     { name = 'nvim_lsp', priority = 9 },
-    { name = 'npm', priority = 9 },
-    { name = 'luasnip', priority = 7 },
-    { name = 'buffer', priority = 7, keyword_length = 5, option = buffer_option },
+    { name = 'npm',      priority = 9 },
+    { name = 'luasnip',  priority = 7 },
+    { name = 'buffer',   priority = 7, keyword_length = 5, option = buffer_option },
     { name = 'nvim_lua', priority = 5 },
-    { name = 'path', priority = 4 },
-    { name = 'calc', priority = 3 },
+    { name = 'path',     priority = 4 },
+    { name = 'calc',     priority = 3 },
   },
 
   sorting = {
@@ -148,19 +148,22 @@ cmp.setup {
   },
 }
 
--- `/` cmdline setup.
--- cmp.setup.cmdline('/', {
---   mapping = cmp.mapping.preset.cmdline(),
---   sources = {
---     { name = 'buffer' }
---   }
--- })
--- `:` cmdline setup.
--- cmp.setup.cmdline(':', {
---   mapping = cmp.mapping.preset.cmdline(),
---   sources = cmp.config.sources({
---     { name = 'path' }
---   }, {
---     { name = 'cmdline' }
---   })
--- })
+-- `/` cmdline setup
+cmp.setup.cmdline('/', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
+-- `:` cmdline setup
+cmp.setup.cmdline(':', {
+  sources = {
+    {
+      name = 'cmdline',
+      option = {
+        ignore_cmds = {}
+      }
+    }
+  }
+})
