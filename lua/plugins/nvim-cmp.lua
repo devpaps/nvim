@@ -148,22 +148,17 @@ cmp.setup {
   },
 }
 
--- `/` cmdline setup
+-- -- `/` cmdline setup
 cmp.setup.cmdline('/', {
   mapping = cmp.mapping.preset.cmdline(),
   sources = {
     { name = 'buffer' }
   }
 })
-
--- `:` cmdline setup
-cmp.setup.cmdline(':', {
-  sources = {
-    {
-      name = 'cmdline',
-      option = {
-        ignore_cmds = {}
-      }
-    }
-  }
-})
+--
+-- -- `:` cmdline setup
+-- cmp.setup.cmdline(':', {
+--   sources = {
+--     name = 'cmdline',
+--   }
+-- })
