@@ -79,10 +79,11 @@ return packer.startup({ function(use)
   -- Themes
   -- use {'bluz71/vim-nightfly-guicolors'}
   -- use {'folke/tokyonight.nvim'}
-  use { 'EdenEast/nightfox.nvim' }
+  -- use { 'EdenEast/nightfox.nvim' }
   -- use { 'gruvbox-community/gruvbox' }
   -- use { "ellisonleao/gruvbox.nvim", config = "require('plugins.gruvbox')" }
   -- use 'shaunsingh/nord.nvim'
+  use { "catppuccin/nvim", as = "catppuccin" }
 
   -- A plugin for annotating and browsing TODO comments in your code
   use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim", config = "require('plugins.todo-comments')" }
