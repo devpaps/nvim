@@ -157,8 +157,8 @@ cmp.setup.cmdline('/', {
 })
 --
 -- -- `:` cmdline setup
--- cmp.setup.cmdline(':', {
---   sources = {
---     name = 'cmdline',
---   }
--- })
+cmp.setup.cmdline(':', {
+  sources = {
+    name = 'cmdline',
+  }
+})
