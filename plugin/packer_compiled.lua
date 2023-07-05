@@ -354,10 +354,14 @@ time([[Config for nvim-tree.lua]], false)
 time([[Config for rust-tools.nvim]], true)
 require('plugins.rust')
 time([[Config for rust-tools.nvim]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-require('plugins.lualine')
-time([[Config for lualine.nvim]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
+time([[Config for nvim-autopairs]], false)
+-- Config for: nvim-toggleterm.lua
+time([[Config for nvim-toggleterm.lua]], true)
+require('plugins.toggleterm')
+time([[Config for nvim-toggleterm.lua]], false)
 -- Config for: project.nvim
 time([[Config for project.nvim]], true)
 require('plugins.project')
@@ -366,10 +370,6 @@ time([[Config for project.nvim]], false)
 time([[Config for vim-rooter]], true)
 try_loadstring("\27LJ\2\nY\0\0\2\0\a\0\b6\0\0\0009\0\1\0006\1\3\0009\1\4\0019\1\5\0019\1\6\1=\1\2\0K\0\1\0\rpatterns\vrooter\fplugins\bM42\20rooter_patterns\6g\bvim\0", "config", "vim-rooter")
 time([[Config for vim-rooter]], false)
--- Config for: indent-blankline.nvim
-time([[Config for indent-blankline.nvim]], true)
-require('plugins.indent')
-time([[Config for indent-blankline.nvim]], false)
 -- Config for: nvim-colorizer.lua
 time([[Config for nvim-colorizer.lua]], true)
 require('plugins.colorizer')
@@ -378,50 +378,50 @@ time([[Config for nvim-colorizer.lua]], false)
 time([[Config for trouble.nvim]], true)
 require('plugins.trouble')
 time([[Config for trouble.nvim]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require('plugins.treesitter')
-time([[Config for nvim-treesitter]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-require('plugins.nvim-cmp')
-time([[Config for nvim-cmp]], false)
--- Config for: todo-comments.nvim
-time([[Config for todo-comments.nvim]], true)
-require('plugins.todo-comments')
-time([[Config for todo-comments.nvim]], false)
--- Config for: null-ls.nvim
-time([[Config for null-ls.nvim]], true)
-require('lsp.null-ls')
-time([[Config for null-ls.nvim]], false)
 -- Config for: alpha-nvim
 time([[Config for alpha-nvim]], true)
 require('plugins.alpha')
 time([[Config for alpha-nvim]], false)
--- Config for: Comment.nvim
-time([[Config for Comment.nvim]], true)
-require('plugins.comment')
-time([[Config for Comment.nvim]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require('plugins.nvim-cmp')
+time([[Config for nvim-cmp]], false)
+-- Config for: null-ls.nvim
+time([[Config for null-ls.nvim]], true)
+require('lsp.null-ls')
+time([[Config for null-ls.nvim]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require('plugins.treesitter')
+time([[Config for nvim-treesitter]], false)
 -- Config for: telescope.nvim
 time([[Config for telescope.nvim]], true)
 require('plugins.telescope/init')
 time([[Config for telescope.nvim]], false)
--- Config for: barbar.nvim
-time([[Config for barbar.nvim]], true)
-require('plugins.barbar')
-time([[Config for barbar.nvim]], false)
--- Config for: nvim-toggleterm.lua
-time([[Config for nvim-toggleterm.lua]], true)
-require('plugins.toggleterm')
-time([[Config for nvim-toggleterm.lua]], false)
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
-try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
-time([[Config for nvim-autopairs]], false)
 -- Config for: fidget.nvim
 time([[Config for fidget.nvim]], true)
 require('plugins.fidget')
 time([[Config for fidget.nvim]], false)
+-- Config for: indent-blankline.nvim
+time([[Config for indent-blankline.nvim]], true)
+require('plugins.indent')
+time([[Config for indent-blankline.nvim]], false)
+-- Config for: todo-comments.nvim
+time([[Config for todo-comments.nvim]], true)
+require('plugins.todo-comments')
+time([[Config for todo-comments.nvim]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+require('plugins.lualine')
+time([[Config for lualine.nvim]], false)
+-- Config for: Comment.nvim
+time([[Config for Comment.nvim]], true)
+require('plugins.comment')
+time([[Config for Comment.nvim]], false)
+-- Config for: barbar.nvim
+time([[Config for barbar.nvim]], true)
+require('plugins.barbar')
+time([[Config for barbar.nvim]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
 vim.cmd [[ packadd nvim-ts-context-commentstring ]]
