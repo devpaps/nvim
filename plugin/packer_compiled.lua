@@ -218,8 +218,10 @@ _G.packer_plugins = {
     url = "https://github.com/norcalli/nvim-colorizer.lua"
   },
   ["nvim-lsp-ts-utils"] = {
+    load_after = {},
     loaded = true,
-    path = "/home/devpaps/.local/share/nvim/site/pack/packer/start/nvim-lsp-ts-utils",
+    needs_bufread = false,
+    path = "/home/devpaps/.local/share/nvim/site/pack/packer/opt/nvim-lsp-ts-utils",
     url = "https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils"
   },
   ["nvim-lspconfig"] = {
@@ -240,7 +242,7 @@ _G.packer_plugins = {
     url = "https://github.com/kyazdani42/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
-    after = { "nvim-ts-context-commentstring" },
+    after = { "nvim-ts-context-commentstring", "nvim-lsp-ts-utils" },
     config = { "require('plugins.treesitter')" },
     loaded = true,
     only_config = true,
@@ -318,11 +320,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/devpaps/.local/share/nvim/site/pack/packer/start/trouble.nvim",
     url = "https://github.com/folke/trouble.nvim"
-  },
-  ["typescript.nvim"] = {
-    loaded = true,
-    path = "/home/devpaps/.local/share/nvim/site/pack/packer/start/typescript.nvim",
-    url = "https://github.com/jose-elias-alvarez/typescript.nvim"
   },
   ["vim-rooter"] = {
     config = { "\27LJ\2\nY\0\0\2\0\a\0\b6\0\0\0009\0\1\0006\1\3\0009\1\4\0019\1\5\0019\1\6\1=\1\2\0K\0\1\0\rpatterns\vrooter\fplugins\bM42\20rooter_patterns\6g\bvim\0" },
@@ -424,6 +421,7 @@ require('plugins.barbar')
 time([[Config for barbar.nvim]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
+vim.cmd [[ packadd nvim-lsp-ts-utils ]]
 vim.cmd [[ packadd nvim-ts-context-commentstring ]]
 time([[Sequenced loading]], false)
 vim.cmd [[augroup packer_load_aucmds]]
