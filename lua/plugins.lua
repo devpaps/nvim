@@ -54,11 +54,9 @@ return packer.startup({ function(use)
   use { "numToStr/Comment.nvim", config = "require('plugins.comment')" }                                 -- Easily comment stuff
   use { 'akinsho/nvim-toggleterm.lua', config = "require('plugins.toggleterm')" }                        -- A plugin for managing and toggling terminal windows in Neovim
   use "kyazdani42/nvim-web-devicons"                                                                     -- Adds file type icons to various Neovim plugins
-  -- use "antoinemadec/FixCursorHold.nvim"                                                               -- This is needed to fix lsp doc highlight
   use { 'JoosepAlviste/nvim-ts-context-commentstring', after = 'nvim-treesitter' }                       -- Sets the commentstring for treesitter based on the
   use { 'folke/which-key.nvim', config = "require('plugins.which-key')", event = "BufWinEnter" }         -- Displays available key mappings when a key sequence is partially entered
   use { 'folke/trouble.nvim', config = "require('plugins.trouble')" }                                    -- A diagnostics plugin for LSP
-  -- use 'ggandor/lightspeed.nvim'                                                                       -- A plugin for fast and precise cursor movements in Neovim
   use { 'sindrets/diffview.nvim' }                                                                       -- A side-by-side diff viewer for Neovim
   use { 'github/copilot.vim' }                                                                           -- GitHub Copilot integration for Neovim
   use 'wakatime/vim-wakatime'                                                                            -- Integrates WakaTime for tracking coding metrics in Neovim
@@ -74,7 +72,7 @@ return packer.startup({ function(use)
   -- Rust
   use { 'simrat39/rust-tools.nvim', config = "require('plugins.rust')" } -- Rust tooling for Neovim, including inlay hints, code actions, and more
 
-  use { 'j-hui/fidget.nvim', config = "require('plugins.fidget')" }      -- Displays LSP loading status
+  use { 'j-hui/fidget.nvim', config = "require('plugins.fidget')", tag = 'legacy'}      -- Displays LSP loading status
 
   -- Themes
   -- use {'bluz71/vim-nightfly-guicolors'}
